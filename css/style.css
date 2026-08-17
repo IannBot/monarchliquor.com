@@ -1,0 +1,876 @@
+/* ========================================
+   Monarch Liquor - Art Nouveau Inspired
+   ======================================== */
+
+/* --- CSS Variables --- */
+:root {
+    --navy: #212f56;
+    --gold: #ffce85;
+    --gold-dark: #e6b76e;
+    --white: #ffffff;
+    --light-gray: #f8f8f8;
+    --text-dark: #333;
+    --text-medium: #666;
+    --heading-font: 'Libre Baskerville', serif;
+    --body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* --- Reset / Base --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+/* --- Container --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========================================
+   Announcement Bar
+   ======================================== */
+.announcement-bar {
+    background: var(--navy);
+    color: var(--gold);
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: var(--body-font);
+}
+
+/* ========================================
+   Navbar
+   ======================================== */
+.navbar {
+    background: white;
+    border-bottom: 2px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 12px 30px;
+}
+
+.navbar .container,
+.navbar > div,
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-left a,
+.nav-right a {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+    color: var(--navy);
+    text-decoration: none;
+    font-family: var(--body-font);
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+}
+
+.nav-left a::after,
+.nav-right a:not(.btn-shop)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.nav-left a:hover::after,
+.nav-left a.active::after,
+.nav-right a:not(.btn-shop):hover::after,
+.nav-right a:not(.btn-shop).active::after {
+    width: 100%;
+}
+
+/* Nav Center (Logo) */
+.nav-center {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-center span {
+    font-family: var(--heading-font);
+    letter-spacing: 3px;
+    color: var(--navy);
+    font-size: 13px;
+}
+
+.nav-center img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+/* Shop Now Button */
+.btn-shop {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 10px 24px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.btn-shop:hover {
+    background: var(--gold-dark);
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--navy);
+    cursor: pointer;
+}
+
+/* ========================================
+   Social Sidebar
+   ======================================== */
+.social-sidebar {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.social-sidebar a {
+    color: var(--navy);
+    font-size: 20px;
+    padding: 6px;
+    transition: color 0.3s ease;
+}
+
+.social-sidebar a:hover {
+    color: var(--gold);
+}
+
+/* ========================================
+   Mobile Menu
+   ======================================== */
+.mobile-menu {
+    display: none;
+}
+
+.mobile-menu.active {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(33, 47, 86, 0.97);
+    z-index: 2000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.mobile-menu a {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    font-family: var(--heading-font);
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ========================================
+   Hero
+   ======================================== */
+.hero {
+    position: relative;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('../images/hero-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(33, 47, 86, 0.3);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 40px;
+}
+
+.hero h1 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 52px;
+    margin-bottom: 15px;
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-family: var(--body-font);
+}
+
+.btn-hero {
+    border: 2px solid white;
+    color: white;
+    padding: 14px 36px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-family: var(--body-font);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+}
+
+/* ========================================
+   Categories
+   ======================================== */
+.categories {
+    padding: 80px 0;
+    background: white;
+}
+
+.categories .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.category-card {
+    text-align: center;
+}
+
+.category-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.category-card img:hover {
+    transform: scale(1.03);
+}
+
+.category-card h3 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 28px;
+    margin-top: 20px;
+    color: var(--navy);
+}
+
+.category-card h3::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--gold);
+    margin: 12px auto 20px;
+}
+
+.btn-outline {
+    border: 2px solid var(--navy);
+    color: var(--navy);
+    padding: 12px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: var(--body-font);
+    display: inline-block;
+}
+
+.btn-outline:hover {
+    background: var(--navy);
+    color: white;
+}
+
+/* ========================================
+   Visit Us
+   ======================================== */
+.visit-us {
+    padding: 80px 0;
+}
+
+.visit-us > .section-heading {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.section-heading {
+    text-align: center;
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 38px;
+    color: var(--navy);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-heading::before,
+.section-heading::after {
+    content: '';
+    height: 2px;
+    flex: 1;
+    background: var(--gold);
+}
+
+.section-heading::before {
+    margin-right: 20px;
+}
+
+.section-heading::after {
+    margin-left: 20px;
+}
+
+/* Also used on About page for locations heading */
+.locations .section-heading {
+    margin-bottom: 40px;
+}
+
+/* Location Tabs */
+.location-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 0;
+}
+
+.location-tab {
+    padding: 14px 40px;
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--light-gray);
+    color: var(--navy);
+}
+
+.location-tab.active {
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 25px 25px 0 0;
+}
+
+/* Tab Panels */
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 450px;
+}
+
+.tab-text {
+    padding: 50px 40px;
+}
+
+.tab-text h3 {
+    font-family: var(--heading-font);
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.location-address {
+    color: var(--gold-dark);
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.tab-text p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.location-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.location-actions a {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.location-actions a:hover {
+    color: var(--gold-dark);
+}
+
+.phone-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.tab-image {
+    overflow: hidden;
+}
+
+.tab-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.footer {
+    background: var(--navy);
+    color: white;
+    padding: 60px 0 20px;
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.footer-logo span {
+    font-family: var(--heading-font);
+    letter-spacing: 4px;
+    color: var(--gold);
+    font-size: 14px;
+}
+
+.footer-logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.footer-nav {
+    margin-bottom: 20px;
+}
+
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+    padding: 0 12px;
+    border-right: 1px solid var(--gold);
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:last-child {
+    border-right: none;
+}
+
+.footer-nav a:hover {
+    color: var(--gold);
+}
+
+.footer-social {
+    margin-bottom: 25px;
+}
+
+.footer-social a {
+    color: white;
+    font-size: 22px;
+    margin: 0 12px;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--gold);
+}
+
+.footer-sub-links {
+    margin-bottom: 20px;
+}
+
+.footer-sub-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-sub-links a:hover {
+    color: white;
+}
+
+.footer-copyright {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* ========================================
+   About Hero
+   ======================================== */
+.about-hero {
+    position: relative;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../images/champagne-toast.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+.about-hero h1 {
+    position: relative;
+    z-index: 2;
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 48px;
+    color: var(--gold);
+}
+
+/* ========================================
+   Story
+   ======================================== */
+.story {
+    padding: 80px 0;
+}
+
+.story h2 {
+    font-family: var(--heading-font);
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: var(--navy);
+    text-align: center;
+}
+
+.gold-text {
+    color: var(--gold);
+}
+
+.story-content {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.story-text {
+    flex: 3;
+}
+
+.story-text p {
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.story-image {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.story-image img {
+    width: 100%;
+    border-radius: 50%;
+    max-width: 350px;
+}
+
+/* ========================================
+   Locations
+   ======================================== */
+.locations {
+    padding: 80px 0;
+    background: var(--light-gray);
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.location-card {
+    background: white;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+.location-card h3 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: var(--navy);
+}
+
+.location-card p {
+    margin-bottom: 12px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.location-card p i {
+    color: var(--gold);
+    width: 20px;
+}
+
+.location-card iframe {
+    margin-top: 15px;
+}
+
+/* ========================================
+   Join Team
+   ======================================== */
+.join-team {
+    position: relative;
+    padding: 100px 0;
+    background-image: url('../images/wines-display.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+}
+
+.join-team::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(33, 47, 86, 0.8);
+    z-index: 1;
+}
+
+.join-team h2,
+.join-team p,
+.join-team a {
+    position: relative;
+    z-index: 2;
+}
+
+.join-team h2 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.join-team p {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 36px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-primary:hover {
+    background: var(--gold-dark);
+}
+
+/* ========================================
+   Responsive - Tablet (max-width: 1024px)
+   ======================================== */
+@media (max-width: 1024px) {
+    .nav-left a,
+    .nav-right a {
+        font-size: 11px;
+    }
+
+    .categories .container {
+        gap: 20px;
+    }
+}
+
+/* ========================================
+   Responsive - Mobile (max-width: 768px)
+   ======================================== */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-left,
+    .nav-right {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    /* Social Sidebar */
+    .social-sidebar {
+        display: none;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 60vh;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    /* Categories */
+    .categories .container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Visit Us Tabs */
+    .tab-panel.active {
+        grid-template-columns: 1fr;
+    }
+
+    .tab-image {
+        height: 300px;
+    }
+
+    /* Section Heading */
+    .section-heading {
+        font-size: 28px;
+    }
+
+    /* Story */
+    .story-content {
+        flex-direction: column;
+    }
+
+    .story-image {
+        text-align: center;
+        order: -1;
+    }
+
+    .story-image img {
+        max-width: 250px;
+    }
+
+    /* Locations */
+    .locations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* About Hero */
+    .about-hero h1 {
+        font-size: 36px;
+    }
+}
