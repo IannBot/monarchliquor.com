@@ -16,13 +16,13 @@ export default {
   },
 
   // Third-party delivery apps. OWNER TODO: paste each store listing URL; badges
-  // render as plain (non-link) badges until a url is set. Optional: drop an
-  // official logo file into src/images/marketplaces/ and set `logo`.
+  // render as plain (non-link) badges until a url is set. Icons are the
+  // owner-supplied brand symbols in src/images/marketplaces/.
   marketplaces: [
-    { id: "ubereats", name: "Uber Eats", url: null, logo: null },
-    { id: "doordash", name: "DoorDash", url: null, logo: null },
-    { id: "grubhub", name: "Grubhub", url: null, logo: null },
-    { id: "instacart", name: "Instacart", url: null, logo: null },
+    { id: "ubereats", name: "Uber Eats", url: null, logo: "/images/marketplaces/ubereats.png" },
+    { id: "doordash", name: "DoorDash", url: null, logo: "/images/marketplaces/doordash.png" },
+    { id: "grubhub", name: "Grubhub", url: null, logo: "/images/marketplaces/grubhub.png" },
+    { id: "instacart", name: "Instacart", url: null, logo: "/images/marketplaces/instacart.svg" },
   ],
 
   announcement: {

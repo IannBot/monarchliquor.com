@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var hamburger = document.querySelector('.hamburger');
   var mobileMenu = document.querySelector('.mobile-menu');
   var mobileClose = document.querySelector('.mobile-menu-close');
-  var inertTargets = ['main', '.footer', '.store-strip', '.navbar', '.announcement-bar', '.about-blurb', '.sticky-cta']
+  var inertTargets = ['main', '.footer', '.store-strip', '.navbar', '.announcement-bar', '.about-blurb', '.sticky-cta', '.marketplaces']
     .map(function (sel) { return document.querySelector(sel); })
     .filter(Boolean);
   var lastFocus = null;

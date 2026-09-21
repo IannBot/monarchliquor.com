@@ -191,32 +191,6 @@ body {
 }
 
 /* ========================================
-   Social Sidebar
-   ======================================== */
-.social-sidebar {
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 8px;
-}
-
-.social-sidebar a {
-    color: var(--navy);
-    font-size: 20px;
-    padding: 6px;
-    transition: color 0.3s ease;
-}
-
-.social-sidebar a:hover {
-    color: var(--gold);
-}
-
-/* ========================================
    Mobile Menu
    ======================================== */
 .mobile-menu {
@@ -1468,11 +1442,6 @@ body {
         display: block;
     }
 
-    /* Social Sidebar */
-    .social-sidebar {
-        display: none;
-    }
-
     /* Hero */
     .hero {
         min-height: 60vh;
@@ -2577,7 +2546,6 @@ body {
     display: block;
 }
 
-.social-sidebar .icon,
 .footer-social .icon {
     width: 22px;
     height: 22px;
@@ -3112,29 +3080,68 @@ span.marketplace-badge {
     }
 }
 
-/* Floating social buttons: white pill so they read clearly over photos */
-.social-sidebar {
-    left: 12px;
-    gap: 4px;
-    padding: 6px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(33, 47, 86, 0.12);
-    border-radius: var(--r-pill);
-    box-shadow: var(--shadow-md);
-    backdrop-filter: blur(4px);
+
+/* ========================================
+   Social icons in the header and drawer (floating sidebar removed)
+   ======================================== */
+.nav-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    margin: 0 4px 0 -6px;
 }
 
-.social-sidebar a {
-    display: flex;
+.nav-right .nav-social a {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
+    width: 36px;
+    height: 36px;
     padding: 0;
+    border-radius: 50%;
+    color: var(--navy);
 }
 
-.social-sidebar a:hover {
+.nav-right .nav-social a::after {
+    display: none;
+}
+
+.nav-right .nav-social a:hover {
     background: var(--gold-100);
-    color: var(--navy);
+}
+
+.nav-social .icon {
+    width: 18px;
+    height: 18px;
+}
+
+.mobile-menu__social {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.mobile-menu__social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--white);
+}
+
+.mobile-menu__social .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.marketplace-badge__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex: none;
+    display: block;
 }

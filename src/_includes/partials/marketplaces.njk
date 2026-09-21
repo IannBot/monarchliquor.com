@@ -15,7 +15,7 @@
             <span class="marketplace-badge marketplace-badge--{{ m.id }}" title="Link coming soon">
 {%- endif %}
 {%- if m.logo %}
-              <img src="{{ m.logo }}" alt="{{ m.name }}" width="120" height="32" loading="lazy" decoding="async">
+              <img class="marketplace-badge__icon" src="{{ m.logo }}" alt="" width="28" height="28" loading="lazy" decoding="async"><span class="marketplace-badge__name">{{ m.name }}</span>
 {%- else %}
               <span class="marketplace-badge__mark" aria-hidden="true"></span><span class="marketplace-badge__name">{{ m.name }}</span>
 {%- endif %}
