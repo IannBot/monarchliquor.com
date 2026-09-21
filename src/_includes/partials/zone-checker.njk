@@ -1,0 +1,16 @@
+{#- ZIP / neighborhood checker. Renders only once at least one zone has ZIPs
+    (owner-supplied). Without JS the neighborhood lists above still apply. -#}
+{%- set hasZips = false %}
+{%- for z in delivery.zones %}{% if z.zips | length %}{% set hasZips = true %}{% endif %}{% endfor %}
+{%- if hasZips %}
+        <form class="zone-checker" data-zone-checker autocomplete="off">
+          <label for="zone-input">Do you deliver to me?</label>
+          <div class="zone-checker__row">
+            <input id="zone-input" name="q" type="text" inputmode="numeric" placeholder="ZIP code or neighborhood" required>
+            <button type="submit" class="btn btn--secondary">Check</button>
+          </div>
+          <p class="zone-checker__result" aria-live="polite"></p>
+        </form>
+        <script type="application/json" id="zone-data">{{ delivery.zones | dump | safe }}</script>
+        <script src="/js/zone-check.js" defer></script>
+{%- endif %}

@@ -1,10 +1,27 @@
 import * as hoursLib from "./lib/hours.js";
 import photos from "./src/_data/photos.js";
+import delivery from "./src/_data/delivery.js";
+import siteData from "./src/_data/site.js";
+import { faqAnswer } from "./lib/schema.js";
 
 export default function (eleventyConfig) {
   // Hours engine is shared with the browser.
   eleventyConfig.addPassthroughCopy({ "lib/hours.js": "js/hours-core.js" });
   eleventyConfig.addGlobalData("hoursLib", hoursLib);
+
+  // Every BottleCapps link goes through this shortcode so placement is tracked.
+  eleventyConfig.addShortcode("order", (placement, label = "Order Delivery", cls = "btn btn--primary") =>
+    `<a href="${siteData.bottlecapps.home}" target="_blank" rel="noopener" class="${cls} shop-link" data-cta="${placement}">${label}</a>`);
+
+  eleventyConfig.addFilter("faqAnswer", (f, d) => faqAnswer(f, d));
+
+  eleventyConfig.on("eleventy.before", () => {
+    const unconfirmed = Object.entries(delivery.terms).filter(([, t]) => !t.confirmed).map(([k]) => k);
+    const zones = delivery.zones.filter((z) => !z.confirmed).map((z) => z.storeId);
+    if (unconfirmed.length) console.log(`[delivery] WARN unconfirmed delivery term(s), rendering fallbacks: ${unconfirmed.join(", ")}`);
+    if (zones.length) console.log(`[delivery] WARN unconfirmed delivery zone(s): ${zones.join(", ")}`);
+    if (process.env.STRICT_TERMS === "1" && (unconfirmed.length || zones.length)) throw new Error("STRICT_TERMS: unconfirmed delivery terms");
+  });
 
   eleventyConfig.on("eleventy.after", () => {
     const pending = Object.entries(photos).filter(([, p]) => p.placeholder).map(([k]) => k);
@@ -24,6 +41,8 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("otherStore", (stores, id) => stores.find((x) => x.id !== id));
   eleventyConfig.addFilter("zoneFor", (zones, id) => zones.find((z) => z.storeId === id));
+
+  eleventyConfig.addFilter("uniquePhones", (stores) => [...new Set(stores.map((s) => s.phone.href))]);
 
   // Pretty JSON for the JSON-LD script tag.
   eleventyConfig.addFilter("jsonld", (value) => JSON.stringify(value, null, 2));

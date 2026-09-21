@@ -1,6 +1,11 @@
 {%- if site.announcement.enabled %}
-  <!-- Announcement Bar -->
+{%- set hoursLine = hoursLib.weeklySummary(business.hours)[0] | upper %}
+  <!-- Announcement Bar (text is derived from confirmed delivery terms) -->
   <div class="announcement-bar">
-    <a href="{{ site.announcement.href }}">FREE DELIVERY OVER $50 &middot; BEST ALCOHOL DELIVERY THIS SIDE OF THE COLORADO</a>
+{%- if delivery.terms.freeOver.confirmed %}
+    <a href="{{ site.announcement.href }}">FREE DELIVERY OVER ${{ delivery.terms.freeOver.amount }} &middot; DELIVERY {{ hoursLine }} &middot; TWO AUSTIN STORES</a>
+{%- else %}
+    <a href="{{ site.announcement.href }}">ORDER ONLINE &middot; DELIVERY &amp; CURBSIDE {{ hoursLine }} &middot; TWO AUSTIN STORES</a>
+{%- endif %}
   </div>
 {%- endif %}

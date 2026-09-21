@@ -3,7 +3,7 @@
 {%- for f in faqs[faqGroup] %}
         <details>
           <summary>{{ f.q }}</summary>
-          <p>{{ f.a }}</p>
+          <p>{{ f | faqAnswer(delivery) }}</p>
         </details>
 {%- endfor %}
       </div>

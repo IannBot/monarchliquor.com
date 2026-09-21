@@ -26,6 +26,7 @@ export default {
         site: data.site,
         business: data.business,
         faqs: data.faqs,
+        delivery: data.delivery,
         page: {
           url: data.page.url.replace(/index\.html$/, ""),
           title: data.title,

@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
       mobileMenu.setAttribute('aria-hidden', 'false');
       hamburger.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('menu-open');
     });
 
     if (mobileClose) {
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
       mobileMenu.setAttribute('aria-hidden', 'true');
       if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
     }
   }
 

@@ -19,6 +19,20 @@ schema:
       <p>TWO STORES &middot; ONE PHONE NUMBER &middot; (512) 614-4949</p>
     </section>
 
+    <!-- Order CTA -->
+    <section class="cta-inline">
+      <div class="container cta-inline__inner">
+        <div>
+          <h2>Need a bottle today?</h2>
+          <p>Skip the call and order online. Delivery and curbside from both stores.</p>
+        </div>
+        <div class="cta-inline__actions">
+          {% order "contact-body", "Order Delivery" %}
+          <a href="/delivery.html" class="btn btn--ghost">How delivery works</a>
+        </div>
+      </div>
+    </section>
+
     <!-- Locations -->
     <section class="content-section">
       <h2 class="section-heading reveal">Our Locations</h2>

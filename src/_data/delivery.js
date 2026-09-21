@@ -46,6 +46,9 @@ export default {
     },
   },
 
+  // Shown wherever a zone claim is unconfirmed.
+  zoneFallback: "Call (512) 614-4949 to confirm delivery to your address.",
+
   zones: [
     {
       storeId: "east-austin",
@@ -53,6 +56,7 @@ export default {
       sentence: "East Austin and Central Austin",
       neighborhoods: ["East Austin", "Central Austin"],
       zips: [], // OWNER TODO
+      confirmed: false,
     },
     {
       storeId: "lakeway",
@@ -60,6 +64,7 @@ export default {
       sentence: "All Lakeway neighborhoods, Steiner Ranch, and the Lake Travis area",
       neighborhoods: ["Lakeway", "Steiner Ranch", "Lake Travis"],
       zips: [], // OWNER TODO
+      confirmed: false,
     },
   ],
 };

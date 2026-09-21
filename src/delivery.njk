@@ -1,23 +1,37 @@
 ---
-title: "Alcohol Delivery in Austin & Lakeway | Monarch Liquor"
-description: "Same-day alcohol delivery and curbside pickup from Monarch Liquor. Free delivery over $50 to East Austin, Lakeway neighborhoods, and Steiner Ranch. Mon-Sat 10am-9pm."
-ogDescription: "Same-day alcohol delivery and curbside pickup from Monarch Liquor. Free delivery over $50 to East Austin, Lakeway neighborhoods, and Steiner Ranch."
-twitterDescription: "Same-day alcohol delivery and curbside pickup. Free delivery over $50 to East Austin, Lakeway, and Steiner Ranch."
+title: "Alcohol Delivery in Austin & Lakeway, TX | Monarch Liquor"
+description: "Alcohol delivery and curbside pickup from Monarch Liquor's East Austin and Lakeway stores. Order spirits, wine, and beer online Mon–Sat 10am–9pm. 21+ with valid ID."
+ogDescription: "Alcohol delivery and curbside pickup from Monarch Liquor's East Austin and Lakeway stores. Order online Mon–Sat 10am–9pm."
+twitterDescription: "Alcohol delivery and curbside pickup from two Austin stores. Order online Mon–Sat 10am–9pm."
 image: "/images/champagne-toast-1280.jpg"
 sitemap: { priority: "0.9", changefreq: monthly }
 schema:
   faqs: [delivery]
   stores: true
 ---
+{%- set t = delivery.terms -%}
+{%- set hoursLine = hoursLib.weeklySummary(business.hours)[0] -%}
 
     <!-- Page Hero -->
     <section class="page-hero page-hero--toast">
       <h1><em>Delivery &amp; Curbside</em></h1>
-      <p>FREE DELIVERY OVER $50 &middot; MON&ndash;SAT 10AM&ndash;9PM</p>
+{%- if t.freeOver.confirmed %}
+      <p>FREE DELIVERY OVER ${{ t.freeOver.amount }} &middot; {{ hoursLine | upper }}</p>
+{%- else %}
+      <p>ORDER ONLINE &middot; {{ hoursLine | upper }} &middot; TWO AUSTIN STORES</p>
+{%- endif %}
+      <p class="page-hero__actions">{% order "delivery-hero", "Start Your Order", "btn btn--primary" %}</p>
+    </section>
+
+    <!-- Answer block -->
+    <section class="content-section delivery-intro">
+      <div class="content-narrow">
+        <p class="answer">Monarch Liquor delivers spirits, wine, and beer from two Austin stores, Monday through Saturday, {{ hoursLib.fmt12(business.hours.weekly.mon.open) }} to {{ hoursLib.fmt12(business.hours.weekly.mon.close) }}. Order online and choose delivery or curbside pickup. {% if delivery.zones[0].confirmed and delivery.zones[1].confirmed %}Our East Austin store serves {{ delivery.zones[0].label }}; our Lakeway store serves {{ delivery.zones[1].label }}.{% else %}Each store delivers to its own side of town.{% endif %} Every recipient must be 21 or older with a valid photo ID.</p>
+      </div>
     </section>
 
     <!-- How It Works -->
-    <section class="content-section">
+    <section class="content-section content-section--alt">
       <h2 class="section-heading reveal">How It Works</h2>
       <div class="steps-grid">
         <div class="step-card reveal">
@@ -33,12 +47,58 @@ schema:
         <div class="step-card reveal">
           <span class="step-number">3</span>
           <h3>Delivered to Your Door</h3>
-          <p>A Monarch driver brings it straight to you &mdash; usually the same day. Have your ID ready: every recipient must be 21+.</p>
+          <p>A Monarch driver brings it straight to you{% if t.sameDay.confirmed %} &mdash; usually the same day{% endif %}. Have your ID ready: every recipient must be 21+.</p>
         </div>
       </div>
       <p style="text-align:center; margin-top:40px;">
-        <a href="https://monarchliquor.bottlecapps.com/" target="_blank" rel="noopener" class="btn-primary">START YOUR ORDER</a>
+        {% order "delivery-steps", "Start Your Order", "btn-primary" %}
       </p>
+    </section>
+
+    <!-- Delivery at a glance -->
+    <section class="content-section">
+      <h2 class="section-heading reveal">Delivery at a Glance</h2>
+      <div class="content-narrow">
+        <dl class="terms-list">
+          <div class="terms-list__row">
+            <dt>Hours</dt>
+            <dd>{{ hoursLib.weeklySummary(business.hours) | join(" · ") }}. {{ business.hours.sundayNote }}.</dd>
+          </div>
+          <div class="terms-list__row">
+            <dt>Delivery fee</dt>
+            <dd>{% if t.freeOver.confirmed %}{{ t.freeOver.text }} {{ t.smallOrderFee.text if t.smallOrderFee.confirmed else t.smallOrderFee.fallback }}{% else %}{{ t.freeOver.fallback }}{% endif %}</dd>
+          </div>
+          <div class="terms-list__row">
+            <dt>Timing</dt>
+            <dd>{{ t.sameDay.text if t.sameDay.confirmed else t.sameDay.fallback }}</dd>
+          </div>
+          <div class="terms-list__row">
+            <dt>Where</dt>
+            <dd>
+{%- for zone in delivery.zones %}
+{%- set zs = business.stores | storeById(zone.storeId) %}
+              <strong>{{ zs.shortName }}:</strong> {% if zone.confirmed %}{{ zone.sentence }}{% else %}{{ delivery.zoneFallback }}{% endif %}<br>
+{%- endfor %}
+            </dd>
+          </div>
+          <div class="terms-list__row">
+            <dt>ID</dt>
+            <dd>{{ t.idPolicy.text }}</dd>
+          </div>
+          <div class="terms-list__row">
+            <dt>Gifts</dt>
+            <dd>{{ t.gifts.text if t.gifts.confirmed else t.gifts.fallback }}</dd>
+          </div>
+          <div class="terms-list__row">
+            <dt>Returns</dt>
+            <dd>{{ t.returns.text if t.returns.confirmed else t.returns.fallback }}</dd>
+          </div>
+          <div class="terms-list__row">
+            <dt>Special orders</dt>
+            <dd>{{ t.specialOrders.text if t.specialOrders.confirmed else t.specialOrders.fallback }}</dd>
+          </div>
+        </dl>
+      </div>
     </section>
 
     <!-- Delivery Zones -->
@@ -47,21 +107,18 @@ schema:
       <p class="content-intro">Each store delivers to its own side of town, so your order always comes from the closest shelf.</p>
       <div class="container">
         <div class="locations-grid">
+{%- for zone in delivery.zones %}
+{%- set zs = business.stores | storeById(zone.storeId) %}
           <div class="location-card reveal">
-            <h3>From East Austin</h3>
-            <p><i class="fa-solid fa-map-marker-alt"></i> 1902 E. MLK Jr. Blvd, Austin, TX 78702</p>
-            <p><i class="fa-solid fa-truck"></i> Serving East Austin and Central Austin</p>
-            <p><i class="fa-solid fa-phone"></i> <a href="tel:5126144949">(512) 614-4949</a></p>
-            <p><i class="fa-solid fa-clock"></i> Mon-Sat 10 AM - 9 PM | Sunday Closed</p>
+            <h3><a href="{{ zs.url }}">From {{ zs.shortName }}</a></h3>
+            <p><i class="fa-solid fa-map-marker-alt"></i> {{ zs.address.street }}, {{ zs.address.locality }}, {{ zs.address.region }} {{ zs.address.postalCode }}</p>
+            <p><i class="fa-solid fa-truck"></i> {% if zone.confirmed %}Serving {{ zone.label }}{% else %}{{ delivery.zoneFallback }}{% endif %}</p>
+            <p><i class="fa-solid fa-phone"></i> <a href="{{ zs.phone.href }}">{{ zs.phone.display }}</a></p>
+            <p><i class="fa-solid fa-clock"></i> {% set statusStore = zs %}{% include "partials/hours-status.njk" %}</p>
           </div>
-          <div class="location-card reveal">
-            <h3>From Lakeway</h3>
-            <p><i class="fa-solid fa-map-marker-alt"></i> 1700 Ranch Road 620 N #107B, Austin, TX 78734</p>
-            <p><i class="fa-solid fa-truck"></i> Serving all Lakeway neighborhoods, Steiner Ranch, and the Lake Travis area</p>
-            <p><i class="fa-solid fa-phone"></i> <a href="tel:5126144949">(512) 614-4949</a></p>
-            <p><i class="fa-solid fa-clock"></i> Mon-Sat 10 AM - 9 PM | Sunday Closed</p>
-          </div>
+{%- endfor %}
         </div>
+        {% include "partials/zone-checker.njk" %}
       </div>
     </section>
 
@@ -77,7 +134,7 @@ schema:
         <div class="step-card reveal">
           <i class="fa-solid fa-car"></i>
           <h3>Pull Up</h3>
-          <p>Park out front and give us a ring at (512) 614-4949 to let us know you've arrived.</p>
+          <p>Park out front and give us a ring at {{ business.phone.display }} to let us know you've arrived.</p>
         </div>
         <div class="step-card reveal">
           <i class="fa-solid fa-id-card"></i>
@@ -110,8 +167,7 @@ schema:
     <!-- Closing CTA -->
     <section class="cta-band">
       <h2><em>Thirsty, Austin?</em></h2>
-      <p>Order in the next few hours and a Monarch driver could be at your door before dinner.</p>
-      <a href="https://monarchliquor.bottlecapps.com/" target="_blank" rel="noopener" class="btn-primary">ORDER DELIVERY</a>
+      <p>Order during store hours and a Monarch driver brings it to your door.</p>
+      {% order "delivery-cta", "ORDER DELIVERY", "btn-primary" %}
       <a href="/contact.html" class="btn-outline-light">CONTACT US</a>
     </section>
-

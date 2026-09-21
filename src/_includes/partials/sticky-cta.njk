@@ -1,0 +1,25 @@
+  <!-- Sticky mobile action bar (hidden on desktop by CSS) -->
+{%- set phones = business.stores | uniquePhones %}
+  <nav class="sticky-cta" aria-label="Quick actions">
+    {% order "sticky", "Order Delivery", "sticky-cta__order" %}
+{%- if phones | length == 1 %}
+    <a class="sticky-cta__btn" href="{{ business.stores[0].phone.href }}"><i class="fa-solid fa-phone" aria-hidden="true"></i><span>Call</span></a>
+{%- else %}
+    <details class="sticky-cta__menu">
+      <summary class="sticky-cta__btn"><i class="fa-solid fa-phone" aria-hidden="true"></i><span>Call</span></summary>
+      <div class="sticky-cta__popover">
+{%- for store in business.stores %}
+        <a href="{{ store.phone.href }}">{{ store.shortName }} <span>{{ store.phone.display }}</span></a>
+{%- endfor %}
+      </div>
+    </details>
+{%- endif %}
+    <details class="sticky-cta__menu">
+      <summary class="sticky-cta__btn"><i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i><span>Directions</span></summary>
+      <div class="sticky-cta__popover">
+{%- for store in business.stores %}
+        <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">{{ store.shortName }} <span>{{ store.address.streetShort }}</span></a>
+{%- endfor %}
+      </div>
+    </details>
+  </nav>
