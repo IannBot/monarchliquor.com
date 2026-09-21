@@ -67,10 +67,10 @@ Copy an existing file in `src/guides/`, set `title`, `description`, `headline`, 
 4. **Google Business Profile.** For each listing: set the website to that store's page (`/east-austin.html`, `/lakeway.html`), confirm hours match (Mon–Sat 10am–9pm, Sunday closed), set the "Order online" link to BottleCapps, add the new photos, and copy each listing's Place ID so the review links can use `https://search.google.com/local/writereview?placeid=…` (paste into `reviewUrl` and `gbpUrl` in `business.js`).
 5. **Delivery terms.** Confirm each term and zone in `src/_data/delivery.js` (see above), and supply ZIP lists.
 6. **Photos.** Supply the shots in `src/_data/photos.js`.
-7. **Lakeway phone.** Replace `SHARED_PHONE` for the Lakeway store in `business.js` with its direct number.
-8. **Emails.** Decide whether both stores use `Retail@monarchliquor.com`; update `email` per store and `careersEmail`.
-9. **BottleCapps category URLs.** Paste spirits/wine/beer category links into `site.js` so category cards and guide callouts deep-link.
-10. **Payment methods and price range** in `business.js` (used in schema).
+7. **Emails.** Decide whether both stores use `Retail@monarchliquor.com`; update `email` per store and `careersEmail`.
+8. **BottleCapps category URLs.** Paste spirits/wine/beer category links into `site.js` so category cards and guide callouts deep-link.
+9. **Payment methods and price range** in `business.js` (used in schema).
+10. **Delivery app links.** Paste the Uber Eats, DoorDash, Grubhub, and Instacart store URLs into `marketplaces` in `src/_data/site.js` (badges on the homepage and delivery page become links). Optionally add official logo files under `src/images/marketplaces/` and set each entry's `logo`.
 
 ## Deploy
 

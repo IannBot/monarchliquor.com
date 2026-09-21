@@ -114,7 +114,7 @@ body {
 .nav-right a {
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--navy);
     text-decoration: none;
     font-family: var(--body-font);
@@ -1697,58 +1697,6 @@ body {
 }
 
 /* ========================================
-   Store strip (under the header, every page)
-   ======================================== */
-.store-strip {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: var(--cream);
-    border-bottom: 1px solid rgba(33, 47, 86, 0.12);
-    font-family: var(--body-font);
-    font-size: 13px;
-}
-
-.store-strip__cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 6px 14px;
-    padding: 8px 16px;
-}
-
-.store-strip__cell + .store-strip__cell {
-    border-left: 1px solid rgba(33, 47, 86, 0.12);
-}
-
-.store-strip__name {
-    font-family: var(--heading-font);
-    font-style: italic;
-    font-size: 15px;
-    color: var(--navy);
-    text-decoration: none;
-}
-
-.store-strip__name:hover {
-    color: var(--gold-dark);
-}
-
-.store-strip__address,
-.store-strip__phone {
-    color: var(--navy);
-    text-decoration: none;
-}
-
-.store-strip__address:hover,
-.store-strip__phone:hover {
-    text-decoration: underline;
-}
-
-.store-strip__phone {
-    font-weight: 600;
-}
-
-/* ========================================
    Hours table
    ======================================== */
 .hours-table {
@@ -2230,30 +2178,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .store-strip {
-        grid-template-columns: 1fr;
-    }
-
-    .store-strip__cell {
-        justify-content: space-between;
-        padding: 6px 14px;
-        gap: 4px 10px;
-    }
-
-    .store-strip__cell + .store-strip__cell {
-        border-left: none;
-        border-top: 1px solid rgba(33, 47, 86, 0.12);
-    }
-
-    .store-strip__address,
-    .store-strip__phone {
-        display: none;
-    }
-
-    .store-strip .hours-status {
-        font-size: 13px;
-    }
-
     .store-card {
         padding: 24px 20px;
     }
@@ -2945,4 +2869,272 @@ body {
     font-size: 13px;
     color: var(--text-medium);
     margin: -4px 0 0;
+}
+
+/* ========================================
+   Header nav sizing + SHOP NOW pill (specificity beats ".nav-right a")
+   ======================================== */
+.nav-left a,
+.nav-right a {
+    padding: 8px 2px;
+}
+
+.nav-right a.btn-shop {
+    padding: 12px 28px;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+    line-height: 1;
+    border-radius: var(--r-pill);
+    box-shadow: 0 2px 8px rgba(230, 183, 110, 0.35);
+}
+
+.nav-right a.btn-shop::after {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .nav-left a,
+    .nav-right a {
+        font-size: 12px;
+    }
+
+    .nav-right a.btn-shop {
+        padding: 10px 20px;
+    }
+}
+
+/* ========================================
+   Store strip (redesigned): one status, two addresses, no phones
+   ======================================== */
+.store-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 9px 20px;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(33, 47, 86, 0.1);
+    font-family: var(--body-font);
+    font-size: 13px;
+}
+
+.store-strip__status .hours-status {
+    font-size: 13px;
+    padding: 4px 12px 4px 10px;
+    background: var(--white);
+    border: 1px solid rgba(33, 47, 86, 0.12);
+    border-radius: var(--r-pill);
+}
+
+.store-strip__stores {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.store-strip__store {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 4px 16px;
+    color: var(--navy);
+    text-decoration: none;
+    border-left: 1px solid rgba(33, 47, 86, 0.15);
+}
+
+.store-strip__store:first-child {
+    border-left: none;
+}
+
+.store-strip__store:hover .store-strip__address {
+    text-decoration: underline;
+}
+
+.store-strip__name {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 15px;
+}
+
+.store-strip__address {
+    color: var(--text-medium);
+}
+
+@media (max-width: 768px) {
+    .store-strip {
+        flex-direction: column;
+        gap: 6px;
+        padding: 8px 12px;
+    }
+
+    .store-strip__stores {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .store-strip__store {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 2px 14px;
+        font-size: 12px;
+    }
+
+    .store-strip__name {
+        font-size: 14px;
+    }
+}
+
+/* Hero: subtitle sits under the buttons */
+.hero-sub {
+    margin: 26px 0 0;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 13px;
+    font-family: var(--body-font);
+}
+
+/* ========================================
+   Third-party delivery apps
+   ======================================== */
+.marketplaces {
+    padding: 56px 0;
+    background: var(--white);
+    border-top: 1px solid rgba(33, 47, 86, 0.08);
+}
+
+.marketplaces--compact {
+    padding: 44px 0;
+    background: var(--cream);
+    border-top: none;
+}
+
+.marketplaces__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 36px;
+    align-items: center;
+}
+
+.marketplaces__text h2 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--navy);
+    margin: 0 0 10px;
+}
+
+.marketplaces__text p {
+    color: var(--text-medium);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 520px;
+}
+
+.marketplaces__text a {
+    color: var(--navy);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 3px;
+}
+
+.marketplaces__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, max-content));
+    gap: 12px;
+    justify-content: end;
+    margin: 0;
+    padding: 0;
+}
+
+.marketplace-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 48px;
+    padding: 10px 18px 10px 14px;
+    border-radius: var(--r-md);
+    border: 1px solid rgba(33, 47, 86, 0.14);
+    background: var(--white);
+    color: var(--navy);
+    text-decoration: none;
+    font-family: var(--body-font);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.2px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.marketplace-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+span.marketplace-badge {
+    opacity: 0.85;
+}
+
+.marketplace-badge img {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
+.marketplace-badge__mark {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    flex: none;
+}
+
+.marketplace-badge--ubereats .marketplace-badge__mark { background: #06c167; }
+.marketplace-badge--doordash .marketplace-badge__mark { background: #ff3008; }
+.marketplace-badge--grubhub .marketplace-badge__mark { background: #f63440; }
+.marketplace-badge--instacart .marketplace-badge__mark { background: #43b02a; }
+
+@media (max-width: 768px) {
+    .marketplaces__inner {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .marketplaces__list {
+        grid-template-columns: 1fr 1fr;
+        justify-content: stretch;
+    }
+
+    .marketplace-badge {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Floating social buttons: white pill so they read clearly over photos */
+.social-sidebar {
+    left: 12px;
+    gap: 4px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(33, 47, 86, 0.12);
+    border-radius: var(--r-pill);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(4px);
+}
+
+.social-sidebar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.social-sidebar a:hover {
+    background: var(--gold-100);
+    color: var(--navy);
 }

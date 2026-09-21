@@ -15,6 +15,16 @@ export default {
     categories: { spirits: null, wine: null, beer: null },
   },
 
+  // Third-party delivery apps. OWNER TODO: paste each store listing URL; badges
+  // render as plain (non-link) badges until a url is set. Optional: drop an
+  // official logo file into src/images/marketplaces/ and set `logo`.
+  marketplaces: [
+    { id: "ubereats", name: "Uber Eats", url: null, logo: null },
+    { id: "doordash", name: "DoorDash", url: null, logo: null },
+    { id: "grubhub", name: "Grubhub", url: null, logo: null },
+    { id: "instacart", name: "Instacart", url: null, logo: null },
+  ],
+
   announcement: {
     enabled: true,
     href: "/delivery.html",

@@ -102,8 +102,7 @@ export default {
         country: "US",
       },
       geo: { lat: 30.3515, lng: -97.953 },
-      // OWNER TODO: Lakeway has its own direct number; replace SHARED_PHONE when supplied.
-      phone: SHARED_PHONE,
+      phone: { display: "(512) 300-0065", tel: "+15123000065", href: "tel:5123000065" },
       email: "Monarch.liquor.atx@gmail.com",
       areaServed: ["Lakeway", "West Austin", "Steiner Ranch", "Lake Travis"],
       directionsUrl: "https://maps.google.com/?q=1700+RR+620+107B+Austin+TX",

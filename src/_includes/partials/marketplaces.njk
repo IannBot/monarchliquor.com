@@ -1,0 +1,31 @@
+{#- Third-party delivery apps. Badges become links once site.marketplaces[].url is set.
+    Set `marketplacesCompact = true` for the shorter delivery-page variant. -#}
+    <section class="marketplaces{% if marketplacesCompact %} marketplaces--compact{% endif %}" aria-labelledby="marketplaces-heading">
+      <div class="container marketplaces__inner">
+        <div class="marketplaces__text">
+          <h2 id="marketplaces-heading">{% if marketplacesCompact %}Also on the apps you already use{% else %}Find us on your favorite apps{% endif %}</h2>
+          <p>We're on the big delivery apps too, so order wherever is easiest. Ordering <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="shop-link" data-cta="marketplaces-direct">directly from us</a> comes straight off our shelf, packed by our team, with a real person to call if anything comes up.</p>
+        </div>
+        <ul class="marketplaces__list">
+{%- for m in site.marketplaces %}
+          <li>
+{%- if m.url %}
+            <a class="marketplace-badge marketplace-badge--{{ m.id }}" href="{{ m.url }}" target="_blank" rel="noopener noreferrer" data-cta="marketplace-{{ m.id }}">
+{%- else %}
+            <span class="marketplace-badge marketplace-badge--{{ m.id }}" title="Link coming soon">
+{%- endif %}
+{%- if m.logo %}
+              <img src="{{ m.logo }}" alt="{{ m.name }}" width="120" height="32" loading="lazy" decoding="async">
+{%- else %}
+              <span class="marketplace-badge__mark" aria-hidden="true"></span><span class="marketplace-badge__name">{{ m.name }}</span>
+{%- endif %}
+{%- if m.url %}
+            </a>
+{%- else %}
+            </span>
+{%- endif %}
+          </li>
+{%- endfor %}
+        </ul>
+      </div>
+    </section>

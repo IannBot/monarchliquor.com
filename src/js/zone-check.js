@@ -22,7 +22,7 @@
       out.innerHTML = "Yes! Delivered from our <strong>" + (names[hit.storeId] || hit.storeId) + "</strong> store. " +
         '<a class="shop-link" data-cta="zone-checker" href="https://monarchliquor.bottlecapps.com/" target="_blank" rel="noopener">Start your order</a>.';
     } else {
-      out.innerHTML = "We're not sure about that address yet. Call <a href=\"tel:5126144949\">(512) 614-4949</a> and we'll check.";
+      out.innerHTML = "We're not sure about that address yet. Call East Austin <a href=\"tel:5126144949\">(512) 614-4949</a> or Lakeway <a href=\"tel:5123000065\">(512) 300-0065</a> and we'll check.";
     }
   });
 })();

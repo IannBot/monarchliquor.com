@@ -8,7 +8,7 @@ export default {
   delivery: [
     {
       q: "Where do you deliver?",
-      a: "Our East Austin store delivers across East and Central Austin, and our Lakeway store delivers to all Lakeway neighborhoods, Steiner Ranch, and the Lake Travis area. Not sure if you're in our zone? Give us a call at (512) 614-4949 and we'll check.",
+      a: "Our East Austin store delivers across East and Central Austin, and our Lakeway store delivers to all Lakeway neighborhoods, Steiner Ranch, and the Lake Travis area. Not sure if you're in our zone? Call East Austin at (512) 614-4949 or Lakeway at (512) 300-0065 and we'll check.",
     },
     {
       q: "How much does delivery cost?",
@@ -30,7 +30,7 @@ export default {
     },
     {
       q: "Can I return or exchange a product?",
-      a: "Unopened products in their original condition can usually be exchanged in store. Give us a call at (512) 614-4949 and we'll make it right.",
+      a: "Unopened products in their original condition can usually be exchanged in store. Call the store you ordered from (East Austin (512) 614-4949, Lakeway (512) 300-0065) and we'll make it right.",
       term: "returns",
     },
     {
@@ -88,7 +88,7 @@ export default {
     },
     {
       q: "Does Monarch Liquor deliver to Steiner Ranch and Lakeway?",
-      a: "Yes. The Lakeway store delivers to all Lakeway neighborhoods, Steiner Ranch, and the Lake Travis area. Order online and choose delivery, or call (512) 614-4949.",
+      a: "Yes. The Lakeway store delivers to all Lakeway neighborhoods, Steiner Ranch, and the Lake Travis area. Order online and choose delivery, or call (512) 300-0065.",
       zone: "lakeway",
     },
     {

@@ -26,12 +26,12 @@ export default {
     },
     gifts: {
       text: "Yes! Add delivery instructions at checkout and we'll bring the order to your recipient. The recipient must be 21 or older and show valid ID when accepting the delivery.",
-      fallback: "Call us at (512) 614-4949 to arrange a gift delivery.",
+      fallback: "Call either store to arrange a gift delivery: East Austin (512) 614-4949 or Lakeway (512) 300-0065.",
       confirmed: false,
     },
     returns: {
-      text: "Unopened products in their original condition can usually be exchanged in store. Give us a call at (512) 614-4949 and we'll make it right.",
-      fallback: "Call us at (512) 614-4949 about returns or exchanges.",
+      text: "Unopened products in their original condition can usually be exchanged in store. Call the store you ordered from (East Austin (512) 614-4949, Lakeway (512) 300-0065) and we'll make it right.",
+      fallback: "Call the store you ordered from about returns or exchanges: East Austin (512) 614-4949 or Lakeway (512) 300-0065.",
       confirmed: false,
     },
     specialOrders: {
@@ -47,7 +47,7 @@ export default {
   },
 
   // Shown wherever a zone claim is unconfirmed.
-  zoneFallback: "Call (512) 614-4949 to confirm delivery to your address.",
+  zoneFallback: "Call East Austin (512) 614-4949 or Lakeway (512) 300-0065 to confirm delivery to your address.",
 
   zones: [
     {
