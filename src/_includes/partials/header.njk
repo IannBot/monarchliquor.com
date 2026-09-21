@@ -1,0 +1,35 @@
+{%- set pageUrl = page.url | replace("index.html", "") -%}
+{%- macro navlink(item, pageUrl) -%}
+{%- set active = (item.href == pageUrl) or (item.href != "/" and pageUrl.startsWith(item.href)) -%}
+<a href="{{ item.href }}"{% if active %} class="active"{% endif %}>{{ item.label | safe }}</a>
+{%- endmacro %}
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-left">
+{%- for item in site.nav.left %}
+      {{ navlink(item, pageUrl) }}
+{%- endfor %}
+    </div>
+
+    <div class="nav-center">
+      <span>EST.</span>
+      <a href="/">
+        <picture>
+          <source type="image/webp" srcset="/images/logo-160.webp">
+          <img src="/images/logo-160.png" alt="Monarch Liquor logo" width="70" height="70">
+        </picture>
+      </a>
+      <span>{{ business.foundingYear }}</span>
+    </div>
+
+    <div class="nav-right">
+{%- for item in site.nav.right %}
+      {{ navlink(item, pageUrl) }}
+{%- endfor %}
+      <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="shop-link btn-shop">SHOP NOW</a>
+    </div>
+
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>

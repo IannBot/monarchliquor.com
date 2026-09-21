@@ -1,0 +1,9 @@
+{#- Renders one FAQ group as <details>. Usage: {% set faqGroup = "delivery" %}{% include "partials/faq-list.njk" %} -#}
+      <div class="faq-list">
+{%- for f in faqs[faqGroup] %}
+        <details>
+          <summary>{{ f.q }}</summary>
+          <p>{{ f.a }}</p>
+        </details>
+{%- endfor %}
+      </div>

@@ -3,4 +3,5 @@ Thumbs.db
 *.psd
 .vscode/
 images-src/
-scripts/node_modules/
+node_modules/
+_site/

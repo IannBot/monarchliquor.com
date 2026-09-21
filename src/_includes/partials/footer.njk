@@ -1,0 +1,34 @@
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <span>EST.</span>
+      <picture>
+        <source type="image/webp" srcset="/images/logo-160.webp">
+        <img src="/images/logo-160.png" alt="Monarch Liquor logo" width="80" height="80" loading="lazy" decoding="async">
+      </picture>
+      <span>{{ business.foundingYear }}</span>
+    </div>
+
+    <div class="footer-nav">
+{%- for item in site.nav.footer %}
+      <a href="{{ item.href }}">{{ item.label | safe }}</a>
+{%- endfor %}
+    </div>
+
+    <div class="footer-social">
+      <a href="{{ business.social.facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="{{ business.social.instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
+
+    <div class="footer-sub-links">
+{%- for item in site.nav.footerSub %}
+      <a href="{{ item.href }}">{{ item.label | safe }}</a>
+{%- endfor %}
+    </div>
+
+    <p class="footer-copyright">&copy; <span id="copyright-year"></span> by {{ business.name }}</p>
+  </footer>

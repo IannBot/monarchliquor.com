@@ -1,0 +1,8 @@
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" aria-hidden="true">
+    <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+{%- for item in site.nav.mobile %}
+    <a href="{{ item.href }}">{{ item.label | safe }}</a>
+{%- endfor %}
+    <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="shop-link">SHOP NOW</a>
+  </div>
