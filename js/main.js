@@ -1,6 +1,12 @@
 /* Monarch Liquor - Main JavaScript */
 
+// Signals CSS that JS is available (scroll-reveal styles are gated on html.js
+// so content is never hidden for no-JS visitors).
+document.documentElement.classList.add('js');
+
 document.addEventListener('DOMContentLoaded', function () {
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // --- Copyright Year ---
   const yearEl = document.getElementById('copyright-year');
@@ -76,10 +82,30 @@ document.addEventListener('DOMContentLoaded', function () {
           ? document.querySelector('.navbar').offsetHeight
           : 0;
         var targetPos = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
-        window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        window.scrollTo({ top: targetPos, behavior: reduceMotion ? 'auto' : 'smooth' });
       }
     });
   });
+
+  // --- Scroll reveal ---
+  var revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    if (!('IntersectionObserver' in window) || reduceMotion) {
+      // No IO support or reduced motion: show everything immediately
+      revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    } else {
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealEls.forEach(function (el) { revealObserver.observe(el); });
+    }
+  }
 
   // --- Navbar scroll shadow ---
   var navbar = document.querySelector('.navbar');

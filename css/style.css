@@ -24,8 +24,10 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -46,13 +48,22 @@ body {
    ======================================== */
 .announcement-bar {
     background: var(--navy);
-    color: var(--gold);
     text-align: center;
     padding: 10px;
     font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
     font-family: var(--body-font);
+}
+
+.announcement-bar a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.announcement-bar a:hover {
+    color: var(--white);
 }
 
 /* ========================================
@@ -145,7 +156,7 @@ body {
     letter-spacing: 1px;
     font-size: 13px;
     text-decoration: none;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-shop:hover {
@@ -240,17 +251,46 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url('../images/hero-banner.jpg');
+    background-image: url('/images/hero-banner-1920.jpg');
+    background-image: image-set(
+        url('/images/hero-banner-1920.webp') type('image/webp'),
+        url('/images/hero-banner-1920.jpg') type('image/jpeg')
+    );
     background-size: cover;
     background-position: center;
     overflow: hidden;
+}
+
+@media (max-width: 1280px) {
+    .hero {
+        background-image: url('/images/hero-banner-1280.jpg');
+        background-image: image-set(
+            url('/images/hero-banner-1280.webp') type('image/webp'),
+            url('/images/hero-banner-1280.jpg') type('image/jpeg')
+        );
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        background-image: url('/images/hero-banner-768.jpg');
+        background-image: image-set(
+            url('/images/hero-banner-768.webp') type('image/webp'),
+            url('/images/hero-banner-768.jpg') type('image/jpeg')
+        );
+    }
 }
 
 .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(33, 47, 86, 0.3);
+    background: linear-gradient(
+        to bottom,
+        rgba(33, 47, 86, 0.55),
+        rgba(33, 47, 86, 0.2) 45%,
+        rgba(33, 47, 86, 0.45)
+    );
     z-index: 1;
 }
 
@@ -313,18 +353,40 @@ body {
 
 .category-card {
     text-align: center;
-}
-
-.category-card img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 4px;
     transition: transform 0.3s ease;
 }
 
-.category-card img:hover {
-    transform: scale(1.03);
+/* Framed card imagery — gold keyline echoes the art-nouveau posters */
+.card-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(33, 47, 86, 0.35), transparent 40%);
+    outline: 1px solid var(--gold);
+    outline-offset: -8px;
+    pointer-events: none;
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+}
+
+.category-card:hover .card-media img {
+    transform: scale(1.05);
 }
 
 .category-card h3 {
@@ -362,6 +424,27 @@ body {
 .btn-outline:hover {
     background: var(--navy);
     color: white;
+}
+
+/* ========================================
+   Guides Teaser (home page)
+   ======================================== */
+.guides-teaser {
+    padding: 80px 0;
+    background: var(--light-gray);
+}
+
+.guides-teaser > .section-heading {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.guides-teaser .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
 }
 
 /* ========================================
@@ -502,6 +585,7 @@ body {
 }
 
 .tab-image {
+    position: relative;
     overflow: hidden;
 }
 
@@ -509,6 +593,15 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.tab-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    outline: 1px solid var(--gold);
+    outline-offset: -8px;
+    pointer-events: none;
 }
 
 /* ========================================
@@ -547,14 +640,34 @@ body {
 }
 
 .footer-nav a {
+    position: relative;
+    display: inline-block;
     color: white;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-size: 13px;
-    padding: 0 12px;
+    padding: 0 12px 4px;
     border-right: 1px solid var(--gold);
     transition: color 0.3s ease;
+}
+
+/* Gold underline sweep, matching the top nav */
+.footer-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.footer-nav a:hover::after {
+    transform: scaleX(1);
 }
 
 .footer-nav a:last-child {
@@ -602,34 +715,138 @@ body {
 }
 
 /* ========================================
-   About Hero
+   Page Hero (interior pages)
    ======================================== */
-.about-hero {
+.page-hero {
     position: relative;
     height: 50vh;
+    min-height: 300px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url('../images/champagne-toast.jpg');
+    text-align: center;
+    padding: 0 20px;
     background-size: cover;
     background-position: center;
+    background-color: var(--navy);
 }
 
-.about-hero::before {
+.page-hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: linear-gradient(
+        to bottom,
+        rgba(33, 47, 86, 0.6),
+        rgba(33, 47, 86, 0.35) 50%,
+        rgba(33, 47, 86, 0.6)
+    );
     z-index: 1;
 }
 
-.about-hero h1 {
+.page-hero h1 {
     position: relative;
     z-index: 2;
     font-family: var(--heading-font);
     font-style: italic;
     font-size: 48px;
     color: var(--gold);
+}
+
+.page-hero p {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+/* Champagne toast background (about, delivery, contact) */
+.page-hero--toast {
+    background-image: url('/images/champagne-toast-1920.jpg');
+    background-image: image-set(
+        url('/images/champagne-toast-1920.webp') type('image/webp'),
+        url('/images/champagne-toast-1920.jpg') type('image/jpeg')
+    );
+}
+
+/* Art-nouveau banner background (guides, bars & restaurants) */
+.page-hero--nouveau {
+    background-image: url('/images/hero-banner-1920.jpg');
+    background-image: image-set(
+        url('/images/hero-banner-1920.webp') type('image/webp'),
+        url('/images/hero-banner-1920.jpg') type('image/jpeg')
+    );
+}
+
+/* Wine cellar background (careers) */
+.page-hero--cellar {
+    background-image: url('/images/wines-display-1600.jpg');
+    background-image: image-set(
+        url('/images/wines-display-1600.webp') type('image/webp'),
+        url('/images/wines-display-1600.jpg') type('image/jpeg')
+    );
+}
+
+/* Plain navy hero (privacy policy and other prose pages) */
+.page-hero--plain {
+    height: 30vh;
+    min-height: 200px;
+}
+
+@media (max-width: 1280px) {
+    .page-hero--toast {
+        background-image: url('/images/champagne-toast-1280.jpg');
+        background-image: image-set(
+            url('/images/champagne-toast-1280.webp') type('image/webp'),
+            url('/images/champagne-toast-1280.jpg') type('image/jpeg')
+        );
+    }
+
+    .page-hero--nouveau {
+        background-image: url('/images/hero-banner-1280.jpg');
+        background-image: image-set(
+            url('/images/hero-banner-1280.webp') type('image/webp'),
+            url('/images/hero-banner-1280.jpg') type('image/jpeg')
+        );
+    }
+
+    .page-hero--cellar {
+        background-image: url('/images/wines-display-1280.jpg');
+        background-image: image-set(
+            url('/images/wines-display-1280.webp') type('image/webp'),
+            url('/images/wines-display-1280.jpg') type('image/jpeg')
+        );
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero--toast {
+        background-image: url('/images/champagne-toast-768.jpg');
+        background-image: image-set(
+            url('/images/champagne-toast-768.webp') type('image/webp'),
+            url('/images/champagne-toast-768.jpg') type('image/jpeg')
+        );
+    }
+
+    .page-hero--nouveau {
+        background-image: url('/images/hero-banner-768.jpg');
+        background-image: image-set(
+            url('/images/hero-banner-768.webp') type('image/webp'),
+            url('/images/hero-banner-768.jpg') type('image/jpeg')
+        );
+    }
+
+    .page-hero--cellar {
+        background-image: url('/images/wines-display-768.jpg');
+        background-image: image-set(
+            url('/images/wines-display-768.webp') type('image/webp'),
+            url('/images/wines-display-768.jpg') type('image/jpeg')
+        );
+    }
 }
 
 /* ========================================
@@ -730,11 +947,25 @@ body {
 .join-team {
     position: relative;
     padding: 100px 0;
-    background-image: url('../images/wines-display.jpg');
+    background-image: url('/images/wines-display-1600.jpg');
+    background-image: image-set(
+        url('/images/wines-display-1600.webp') type('image/webp'),
+        url('/images/wines-display-1600.jpg') type('image/jpeg')
+    );
     background-size: cover;
     background-position: center;
     text-align: center;
     color: white;
+}
+
+@media (max-width: 768px) {
+    .join-team {
+        background-image: url('/images/wines-display-768.jpg');
+        background-image: image-set(
+            url('/images/wines-display-768.webp') type('image/webp'),
+            url('/images/wines-display-768.jpg') type('image/jpeg')
+        );
+    }
 }
 
 .join-team::before {
@@ -775,7 +1006,7 @@ body {
     font-weight: 700;
     font-size: 13px;
     text-decoration: none;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     display: inline-block;
     position: relative;
     z-index: 2;
@@ -786,15 +1017,417 @@ body {
 }
 
 /* ========================================
+   Interior Content Pages
+   ======================================== */
+.content-section {
+    padding: 70px 0;
+}
+
+.content-section--alt {
+    background: var(--light-gray);
+}
+
+.content-narrow {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.content-section .section-heading {
+    margin-bottom: 30px;
+}
+
+.content-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: var(--text-medium);
+}
+
+/* Step / benefit cards */
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.steps-grid--four {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.step-card {
+    background: white;
+    border: 1px solid rgba(33, 47, 86, 0.1);
+    border-top: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card i {
+    font-size: 28px;
+    color: var(--gold-dark);
+    margin-bottom: 15px;
+}
+
+.step-card h3 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 12px;
+}
+
+.step-card p {
+    font-size: 14px;
+    color: var(--text-medium);
+}
+
+.step-card .btn-outline {
+    margin-top: 18px;
+    font-size: 11px;
+    padding: 10px 22px;
+}
+
+.step-card a:not(.btn-outline) {
+    color: var(--navy);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 3px;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    color: var(--navy);
+    font-family: var(--heading-font);
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* FAQ accordions */
+.faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.faq-list details {
+    background: white;
+    border: 1px solid rgba(33, 47, 86, 0.12);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.faq-list summary {
+    cursor: pointer;
+    padding: 18px 22px;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 15px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.faq-list summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-list summary::after {
+    content: '+';
+    font-family: var(--heading-font);
+    font-size: 20px;
+    color: var(--gold-dark);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.faq-list details[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-list details p {
+    padding: 0 22px 18px;
+    color: var(--text-medium);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* CTA band */
+.cta-band {
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.cta-band h2 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: var(--gold);
+}
+
+.cta-band p {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.cta-band .btn-primary {
+    margin: 0 8px 10px;
+}
+
+.cta-band .btn-outline-light {
+    border: 2px solid white;
+    color: white;
+    padding: 12px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    display: inline-block;
+    margin: 0 8px 10px;
+    transition: all 0.3s ease;
+}
+
+.cta-band .btn-outline-light:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+}
+
+/* Prose (privacy policy, articles) */
+.prose h2 {
+    font-family: var(--heading-font);
+    font-size: 26px;
+    color: var(--navy);
+    margin: 40px 0 15px;
+}
+
+.prose h3 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--navy);
+    margin: 30px 0 12px;
+}
+
+.prose p,
+.prose li {
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.prose ul,
+.prose ol {
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.prose a {
+    color: var(--navy);
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 3px;
+}
+
+.prose a:hover {
+    color: var(--gold-dark);
+}
+
+/* Guide articles */
+.breadcrumb {
+    max-width: 820px;
+    margin: 25px auto 0;
+    padding: 0 20px;
+    font-size: 13px;
+    color: var(--text-medium);
+}
+
+.breadcrumb a {
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--gold-dark);
+}
+
+.breadcrumb .sep {
+    margin: 0 8px;
+    color: var(--gold-dark);
+}
+
+.article-header {
+    max-width: 820px;
+    margin: 20px auto 10px;
+    padding: 0 20px;
+}
+
+.article-header h1 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 38px;
+    color: var(--navy);
+    margin-bottom: 12px;
+}
+
+.article-meta {
+    font-size: 13px;
+    color: var(--text-medium);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.shop-callout {
+    background: rgba(255, 206, 133, 0.18);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 25px;
+    margin: 35px 0;
+    text-align: center;
+}
+
+.shop-callout p {
+    margin-bottom: 15px;
+    color: var(--navy);
+}
+
+/* ========================================
+   Animations (reduced-motion safe)
+   All motion lives inside the no-preference
+   media query; content is always visible
+   without JS (reveal gated on html.js).
+   ======================================== */
+@media (prefers-reduced-motion: no-preference) {
+
+    /* Scroll reveal */
+    html.js .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    html.js .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Stagger cards within grids */
+    html.js .categories .container > .reveal:nth-child(2),
+    html.js .guides-teaser .container > .reveal:nth-child(2),
+    html.js .steps-grid > .reveal:nth-child(2),
+    html.js .locations-grid > .reveal:nth-child(2) {
+        transition-delay: 0.1s;
+    }
+
+    html.js .categories .container > .reveal:nth-child(3),
+    html.js .guides-teaser .container > .reveal:nth-child(3),
+    html.js .steps-grid > .reveal:nth-child(3),
+    html.js .locations-grid > .reveal:nth-child(3) {
+        transition-delay: 0.2s;
+    }
+
+    html.js .steps-grid > .reveal:nth-child(4) {
+        transition-delay: 0.3s;
+    }
+
+    /* Hero entrance */
+    @keyframes heroFadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .hero-content > * {
+        animation: heroFadeUp 0.8s ease both;
+    }
+
+    .hero-content > *:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+
+    .hero-content > *:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    /* Button hover lift */
+    .btn-shop:hover,
+    .btn-hero:hover,
+    .btn-outline:hover,
+    .btn-primary:hover,
+    .btn-outline-light:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(230, 183, 110, 0.35);
+    }
+
+    /* Card hover lift */
+    .step-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(33, 47, 86, 0.12);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    /* Neutralize the whole-card hover motion from the base styles */
+    .category-card:hover {
+        transform: none;
+    }
+
+    .category-card:hover .card-media img {
+        transform: none;
+    }
+}
+
+/* ========================================
    Responsive - Tablet (max-width: 1024px)
    ======================================== */
 @media (max-width: 1024px) {
+    /* 6-item nav needs tighter spacing to avoid wrapping */
+    .nav-left,
+    .nav-right {
+        gap: 14px;
+    }
+
     .nav-left a,
     .nav-right a {
         font-size: 11px;
+        letter-spacing: 1px;
     }
 
-    .categories .container {
+    .btn-shop {
+        padding: 8px 16px;
+    }
+
+    .categories .container,
+    .guides-teaser .container {
         gap: 20px;
     }
 }
@@ -831,8 +1464,9 @@ body {
         font-size: 32px;
     }
 
-    /* Categories */
-    .categories .container {
+    /* Categories / Guides teaser */
+    .categories .container,
+    .guides-teaser .container {
         grid-template-columns: 1fr;
     }
 
@@ -869,8 +1503,24 @@ body {
         grid-template-columns: 1fr;
     }
 
-    /* About Hero */
-    .about-hero h1 {
+    /* Page Hero */
+    .page-hero h1 {
         font-size: 36px;
+    }
+
+    /* Content pages */
+    .steps-grid,
+    .steps-grid--four {
+        grid-template-columns: 1fr;
+    }
+
+    .article-header h1 {
+        font-size: 28px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .steps-grid--four {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

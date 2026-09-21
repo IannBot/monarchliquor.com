@@ -1,0 +1,10 @@
+{
+  "name": "monarch-image-pipeline",
+  "private": true,
+  "type": "module",
+  "description": "One-time image optimization pipeline for monarchliquor.com. Reads ../images-src, writes ../images.",
+  "dependencies": {
+    "png-to-ico": "^2.1.8",
+    "sharp": "^0.33.5"
+  }
+}
