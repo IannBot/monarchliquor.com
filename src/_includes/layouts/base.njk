@@ -55,20 +55,26 @@
 {%- endif %}
 
   <script src="/js/main.js" defer></script>
+  <script type="module" src="/js/hours.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   {% include "partials/announcement.njk" %}
 
   {% include "partials/header.njk" %}
 
+  {% include "partials/store-strip.njk" %}
+
   {% include "partials/social-sidebar.njk" %}
 
   {% include "partials/mobile-menu.njk" %}
 
-  <main>
+  <main id="main">
 {{ content | safe }}
   </main>
+
+  <script type="application/json" id="business-hours">{{ { hours: business.hours, timezone: business.timezone } | dump | safe }}</script>
 
   {% include "partials/footer.njk" %}
 

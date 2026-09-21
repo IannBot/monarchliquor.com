@@ -1,0 +1,6 @@
+{#- Both stores side by side. Set `cardFull = true` for the about/contact variant. -#}
+<div class="locations-grid">
+{%- for store in business.stores %}
+  {% include "partials/store-card.njk" %}
+{%- endfor %}
+</div>

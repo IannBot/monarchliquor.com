@@ -44,4 +44,52 @@ export default {
       term: "gifts",
     },
   ],
+  hours: [
+    {
+      q: "Is Monarch Liquor open on Sunday?",
+      a: "No. Texas law requires package liquor stores to close on Sundays, so both Monarch Liquor stores are closed every Sunday. We are open Monday through Saturday from 10am to 9pm.",
+    },
+    {
+      q: "What time does Monarch Liquor close?",
+      a: "Both stores close at 9pm Monday through Saturday and are closed on Sunday. Holiday hours are posted on each store page when they differ.",
+    },
+  ],
+  "east-austin": [
+    {
+      q: "Where is Monarch Liquor in East Austin?",
+      a: "Monarch Liquor East Austin is at 1902 E. Martin Luther King Jr. Blvd, Austin, TX 78702, on the corner of MLK and Chicon St. next to JuiceLand, Austin Daily Press, and The Wheel.",
+    },
+    {
+      q: "What are the East Austin store hours?",
+      a: "Monday through Saturday, 10am to 9pm. Closed Sunday, as required by Texas law.",
+    },
+    {
+      q: "Does the East Austin store deliver?",
+      a: "Yes. The East Austin store delivers across East and Central Austin. Order online and choose delivery, or call (512) 614-4949.",
+      zone: "east-austin",
+    },
+    {
+      q: "Is there curbside pickup in East Austin?",
+      a: "Yes. Order online or by phone, park out front, and call (512) 614-4949 when you arrive. Have your ID ready; every recipient must be 21 or older.",
+    },
+  ],
+  lakeway: [
+    {
+      q: "Where is Monarch Liquor in Lakeway?",
+      a: "Monarch Liquor Lakeway is at 1700 Ranch Road 620 N, Suite 107B, Austin, TX 78734, near Lake Travis and right next to Don Mario Mexican Restaurant.",
+    },
+    {
+      q: "What are the Lakeway store hours?",
+      a: "Monday through Saturday, 10am to 9pm. Closed Sunday, as required by Texas law.",
+    },
+    {
+      q: "Does Monarch Liquor deliver to Steiner Ranch and Lakeway?",
+      a: "Yes. The Lakeway store delivers to all Lakeway neighborhoods, Steiner Ranch, and the Lake Travis area. Order online and choose delivery, or call (512) 614-4949.",
+      zone: "lakeway",
+    },
+    {
+      q: "Is there a liquor store near Lake Travis with a beer cave?",
+      a: "Yes. Monarch Liquor Lakeway has a walk-in beer cave and a 17-door cooler, plus a large spirits and wine selection, minutes from Lake Travis.",
+    },
+  ],
 };

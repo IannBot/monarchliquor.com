@@ -1,8 +1,29 @@
+import * as hoursLib from "./lib/hours.js";
+import photos from "./src/_data/photos.js";
+
 export default function (eleventyConfig) {
+  // Hours engine is shared with the browser.
+  eleventyConfig.addPassthroughCopy({ "lib/hours.js": "js/hours-core.js" });
+  eleventyConfig.addGlobalData("hoursLib", hoursLib);
+
+  eleventyConfig.on("eleventy.after", () => {
+    const pending = Object.entries(photos).filter(([, p]) => p.placeholder).map(([k]) => k);
+    if (pending.length) console.log(`[photos] ${pending.length} placeholder photo(s) awaiting owner: ${pending.join(", ")}`);
+  });
+
   // Static assets copied as-is.
   for (const p of ["src/css", "src/js", "src/images", "src/site.webmanifest", "src/CNAME", "src/.nojekyll"]) {
     eleventyConfig.addPassthroughCopy(p);
   }
+
+  // Store lookups (Nunjucks' selectattr cannot compare values).
+  eleventyConfig.addFilter("storeById", (stores, id) => {
+    const s = stores.find((x) => x.id === id);
+    if (!s) throw new Error(`storeById: unknown store "${id}"`);
+    return s;
+  });
+  eleventyConfig.addFilter("otherStore", (stores, id) => stores.find((x) => x.id !== id));
+  eleventyConfig.addFilter("zoneFor", (zones, id) => zones.find((z) => z.storeId === id));
 
   // Pretty JSON for the JSON-LD script tag.
   eleventyConfig.addFilter("jsonld", (value) => JSON.stringify(value, null, 2));

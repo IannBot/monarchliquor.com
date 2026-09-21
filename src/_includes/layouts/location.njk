@@ -1,0 +1,106 @@
+---
+layout: layouts/base.njk
+---
+{%- set store = business.stores | storeById(storeId) -%}
+{%- set other = business.stores | otherStore(storeId) -%}
+{%- set hero = photos[store.photos.hero] -%}
+{%- set interior = photos[store.photos.interior] -%}
+{%- set zone = delivery.zones | zoneFor(storeId) -%}
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span><a href="/#visit">Locations</a><span class="sep">/</span>{{ store.shortName }}
+    </nav>
+
+    <!-- Store hero -->
+    <section class="page-hero page-hero--store" style="--hero-image: url('{{ hero.src }}'); --hero-image-webp: url('{{ hero.webp }}')"{% if hero.placeholder %} data-placeholder="{{ store.photos.hero }}"{% endif %}>
+      <p class="page-hero__kicker">Monarch Liquor &middot; {{ store.neighborhood }}</p>
+      <h1><em>{{ h1 }}</em></h1>
+      <p>{{ store.address.street }}, {{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}</p>
+      <p class="page-hero__status">{% set statusStore = store %}{% include "partials/hours-status.njk" %}</p>
+    </section>
+
+    <!-- Facts + answer block -->
+    <section class="content-section store-facts">
+      <div class="container store-facts__grid">
+        <div class="store-facts__intro">
+          <p class="answer">{{ summary }}</p>
+          <p>{{ store.blurb }}</p>
+          <div class="store-facts__actions">
+            <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="btn btn--primary shop-link" data-cta="location-{{ store.id }}">Order Delivery from {{ store.shortName }}</a>
+            <a href="{{ store.phone.href }}" class="btn btn--secondary"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call {{ store.phone.display }}</a>
+            <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn--ghost"><i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i> Directions</a>
+          </div>
+        </div>
+        <div class="store-facts__card">
+          <h2>Store hours &amp; info</h2>
+          <p class="store-card__status">{% set statusStore = store %}{% include "partials/hours-status.njk" %}</p>
+          {% include "partials/hours-table.njk" %}
+          <p class="store-facts__note">{{ business.hours.sundayNote }}</p>
+{%- set upcoming = hoursLib.upcomingHolidays(business.hours) %}
+{%- for h in upcoming %}
+          <p class="store-facts__holiday"><strong>{{ h.label }} ({{ h.date }}):</strong> {% if h.closed %}Closed{% else %}{{ hoursLib.fmt12(h.open) }}–{{ hoursLib.fmt12(h.close) }}{% endif %}</p>
+{%- endfor %}
+          <address>
+            <p><i class="fa-solid fa-map-marker-alt" aria-hidden="true"></i> <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">{{ store.address.street }}, {{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}</a></p>
+            <p><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="{{ store.phone.href }}">{{ store.phone.display }}</a></p>
+            <p><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:{{ store.email }}">{{ store.email }}</a></p>
+          </address>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map + finding us -->
+    <section class="content-section content-section--alt">
+      <div class="container store-map">
+        <div class="store-map__text">
+          <h2 class="section-heading reveal">Finding Us</h2>
+          <p>{{ store.landmarks }}</p>
+{%- if store.parking %}
+          <p>{{ store.parking }}</p>
+{%- endif %}
+          <h3>Inside the store</h3>
+          <ul class="store-highlights">
+{%- for h in store.highlights %}
+            <li>{{ h }}</li>
+{%- endfor %}
+          </ul>
+{%- if zone %}
+          <h3>We deliver to</h3>
+          <p>{{ zone.sentence }}. <a href="/delivery.html">Delivery details</a>.</p>
+{%- endif %}
+          <p><a href="{{ store.reviewUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn--ghost"><i class="fa-solid fa-star" aria-hidden="true"></i> Leave a Google review</a></p>
+        </div>
+        <div class="store-map__embed">
+          <iframe
+            src="{{ store.mapEmbedUrl }}"
+            width="100%" height="380" style="border:0;border-radius:12px" allowfullscreen loading="lazy"
+            title="{{ store.name }} map"></iframe>
+          <p class="store-map__fallback"><a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">Open in Google Maps</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo + FAQ -->
+    <section class="content-section">
+      <div class="container store-faq">
+        <div class="store-faq__photo"{% if interior.placeholder %} data-placeholder="{{ store.photos.interior }}"{% endif %}>
+          <picture>
+            <source type="image/webp" srcset="{{ interior.webp }}">
+            <img src="{{ interior.src }}" width="{{ interior.width }}" height="{{ interior.height }}" alt="{{ interior.alt }}" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="store-faq__list">
+          <h2 class="section-heading reveal">{{ store.shortName }} FAQ</h2>
+          {% set faqGroup = store.id %}{% include "partials/faq-list.njk" %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Other store + CTA -->
+    <section class="cta-band">
+      <h2><em>Closer to {{ other.shortName }}?</em></h2>
+      <p>{{ other.address.street }}, {{ other.address.locality }} &middot; {{ hoursLib.weeklySummary(business.hours)[0] }}</p>
+      <a href="{{ other.url }}" class="btn-outline-light">{{ other.shortName }} store</a>
+      <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="btn-primary shop-link" data-cta="location-cta-{{ store.id }}">ORDER DELIVERY</a>
+    </section>

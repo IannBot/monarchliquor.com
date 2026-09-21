@@ -40,35 +40,7 @@ schema:
     <section id="locations" class="locations">
       <div class="container">
         <h2 class="section-heading reveal">Our Locations</h2>
-        <div class="locations-grid">
-
-          <!-- East Austin -->
-          <div class="location-card reveal">
-            <h3>East Austin</h3>
-            <p><i class="fa-solid fa-map-marker-alt"></i> 1902 E. MLK Jr. Blvd, Austin, Texas 78702</p>
-            <p><i class="fa-solid fa-phone"></i> <a href="tel:5126144949">(512) 614-4949</a></p>
-            <p><i class="fa-solid fa-envelope"></i> <a href="mailto:Retail@monarchliquor.com">Retail@monarchliquor.com</a></p>
-            <p><i class="fa-solid fa-clock"></i> Mon-Sat 10 AM - 9 PM | Sunday Closed</p>
-            <iframe
-              src="https://www.google.com/maps?q=1902+E+Martin+Luther+King+Jr+Blvd+Austin+TX+78702&output=embed"
-              width="100%" height="250" style="border:0;border-radius:8px" allowfullscreen loading="lazy"
-              title="Monarch Liquor East Austin map"></iframe>
-          </div>
-
-          <!-- Lakeway -->
-          <div class="location-card reveal">
-            <h3>Lakeway</h3>
-            <p><i class="fa-solid fa-map-marker-alt"></i> 1700 Ranch Road 620 N #107B, Austin, Texas 78734</p>
-            <p><i class="fa-solid fa-phone"></i> <a href="tel:5126144949">(512) 614-4949</a></p>
-            <p><i class="fa-solid fa-envelope"></i> <a href="mailto:Monarch.liquor.atx@gmail.com">Monarch.liquor.atx@gmail.com</a></p>
-            <p><i class="fa-solid fa-clock"></i> Mon-Sat 10 AM - 9 PM | Sunday Closed</p>
-            <iframe
-              src="https://www.google.com/maps?q=1700+Ranch+Road+620+N+107B+Austin+TX+78734&output=embed"
-              width="100%" height="250" style="border:0;border-radius:8px" allowfullscreen loading="lazy"
-              title="Monarch Liquor Lakeway map"></iframe>
-          </div>
-
-        </div>
+        {% set cardFull = true %}{% include "partials/store-grid.njk" %}
       </div>
     </section>
 

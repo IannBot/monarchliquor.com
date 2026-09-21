@@ -1,0 +1,4 @@
+{#- Live open/closed status with a static fallback. Usage:
+    {% set statusStore = store %}{% include "partials/hours-status.njk" %} -#}
+{%- set summary = hoursLib.weeklySummary(business.hours) -%}
+<span class="hours-status" data-hours-status data-store="{{ statusStore.id if statusStore else 'all' }}"><span class="hours-status__dot" aria-hidden="true"></span><span data-status>{{ summary[0] }}</span><span class="hours-status__sep" aria-hidden="true">·</span><span data-detail>{{ summary[1] }}</span></span>

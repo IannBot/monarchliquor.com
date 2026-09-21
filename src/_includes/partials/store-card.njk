@@ -1,0 +1,31 @@
+{#- One store as a card. Set `store` before including; set `cardFull = true`
+    for the email + hours table + map variant (about, contact). -#}
+<div class="store-card{% if cardFull %} store-card--full{% endif %} reveal" id="store-{{ store.id }}">
+  <div class="store-card__head">
+    <h3><a href="{{ store.url }}">{{ store.shortName }}</a></h3>
+    <p class="store-card__tagline">{{ store.tagline }}</p>
+  </div>
+  <p class="store-card__status">{% set statusStore = store %}{% include "partials/hours-status.njk" %}</p>
+  <address class="store-card__address">
+    <i class="fa-solid fa-map-marker-alt" aria-hidden="true"></i>
+    <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">{{ store.address.street }}<br>{{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}</a>
+  </address>
+  <p class="store-card__line"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="{{ store.phone.href }}">{{ store.phone.display }}</a></p>
+{%- if cardFull %}
+  <p class="store-card__line"><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:{{ store.email }}">{{ store.email }}</a></p>
+  {% include "partials/hours-table.njk" %}
+{%- else %}
+  <p class="store-card__line"><i class="fa-solid fa-clock" aria-hidden="true"></i> {{ hoursLib.weeklySummary(business.hours) | join(" · ") }}</p>
+{%- endif %}
+  <div class="store-card__actions">
+    <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="btn btn--primary shop-link" data-cta="store-card-{{ store.id }}">Order Delivery</a>
+    <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">Directions</a>
+    <a href="{{ store.url }}" class="btn btn--ghost">Store details</a>
+  </div>
+{%- if cardFull %}
+  <iframe
+    src="{{ store.mapEmbedUrl }}"
+    width="100%" height="250" style="border:0;border-radius:8px" allowfullscreen loading="lazy"
+    title="{{ store.name }} map"></iframe>
+{%- endif %}
+</div>

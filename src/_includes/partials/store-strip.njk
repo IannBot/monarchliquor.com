@@ -1,0 +1,11 @@
+  <!-- Store strip: both stores, address, live status, phone. Visible on every page. -->
+  <div class="store-strip" aria-label="Store locations and hours">
+{%- for store in business.stores %}
+    <div class="store-strip__cell">
+      <a class="store-strip__name" href="{{ store.url }}">{{ store.shortName }}</a>
+      <a class="store-strip__address" href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">{{ store.address.streetShort }}</a>
+      {% set statusStore = store %}{% include "partials/hours-status.njk" %}
+      <a class="store-strip__phone" href="{{ store.phone.href }}">{{ store.phone.display }}</a>
+    </div>
+{%- endfor %}
+  </div>

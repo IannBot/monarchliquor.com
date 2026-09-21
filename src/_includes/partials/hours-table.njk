@@ -1,0 +1,12 @@
+{#- Weekly hours table. Today's row is highlighted client-side. -#}
+<table class="hours-table">
+  <caption class="visually-hidden">Weekly store hours</caption>
+  <tbody>
+{%- for row in hoursLib.weeklyRows(business.hours) %}
+    <tr data-hours-row="{{ row.key }}"{% if row.range == "Closed" %} class="is-closed"{% endif %}>
+      <th scope="row">{{ row.day }}</th>
+      <td>{{ row.range }}</td>
+    </tr>
+{%- endfor %}
+  </tbody>
+</table>

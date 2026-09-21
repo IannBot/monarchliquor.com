@@ -62,6 +62,16 @@ export default {
       reviewUrl: "https://g.page/monarchliquor/review",
       mapEmbedUrl:
         "https://www.google.com/maps?q=1902+E+Martin+Luther+King+Jr+Blvd+Austin+TX+78702&output=embed",
+      url: "/east-austin.html",
+      neighborhood: "East Austin",
+      tagline: "The O.G. store at MLK and Chicon",
+      blurb:
+        "The O.G. store in the heart of East Austin. You can't miss the giant sign towering over MLK and Chicon, and you probably know our neighbors: JuiceLand, Austin Daily Press, and The Wheel! The store may seem small, but we pack in a lot of local products, specialty drinks, and seasonal favorites. You'll definitely find your new favorite drink here.",
+      landmarks:
+        "At the corner of E. Martin Luther King Jr. Blvd and Chicon St. Look for the giant Monarch sign. We're next to JuiceLand, Austin Daily Press, and The Wheel.",
+      parking: null, // OWNER TODO: e.g. "Free parking in the lot out front."
+      highlights: ["Local Texas spirits and craft beer", "Specialty and seasonal drinks", "Curbside pickup out front"],
+      photos: { hero: "east-storefront", interior: "east-interior" },
     },
     {
       id: "lakeway",
@@ -86,6 +96,16 @@ export default {
         "https://www.google.com/maps/search/?api=1&query=Monarch+Liquor+1700+Ranch+Road+620+N+107B+Austin+TX+78734",
       mapEmbedUrl:
         "https://www.google.com/maps?q=1700+Ranch+Road+620+N+107B+Austin+TX+78734&output=embed",
+      url: "/lakeway.html",
+      neighborhood: "Lakeway",
+      tagline: "Our biggest store, near Lake Travis",
+      blurb:
+        "Technically in Austin and teetering on the edge of Lakeway, our second location boasts huge quantities of spirits, wines, and beers – especially with a 17 door cooler and built-in beer cave! Conveniently located near Lake Travis, this is where you go to get the best deals in West Austin and Lakeway. We're right next to Don Mario Mexican Restaurant.",
+      landmarks:
+        "On Ranch Road 620 N near Lake Travis, in the same center as Don Mario Mexican Restaurant (suite 107B).",
+      parking: null, // OWNER TODO
+      highlights: ["17-door beer cooler", "Walk-in beer cave", "Huge spirits and wine selection"],
+      photos: { hero: "lakeway-storefront", interior: "lakeway-beer-cave" },
     },
   ],
 };

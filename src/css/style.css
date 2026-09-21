@@ -1441,8 +1441,9 @@ body {
         flex-wrap: wrap;
     }
 
-    .nav-left,
-    .nav-right {
+    /* Higher specificity than ".navbar > div { display: flex }" above. */
+    .navbar .nav-left,
+    .navbar .nav-right {
         display: none;
     }
 
@@ -1522,5 +1523,742 @@ body {
 @media (min-width: 769px) and (max-width: 1024px) {
     .steps-grid--four {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ========================================
+   Design tokens (added in the 2026 overhaul)
+   ======================================== */
+:root {
+    --cream: #fbf7f0;
+    --navy-700: #182342;
+    --gold-100: #fff3dc;
+    --open: #1f7a4d;
+    --closed: #b3261e;
+    --r-sm: 4px;
+    --r-md: 8px;
+    --r-lg: 12px;
+    --r-pill: 999px;
+    --shadow-sm: 0 2px 15px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 30px rgba(33, 47, 86, 0.14);
+}
+
+/* ========================================
+   Accessibility helpers
+   ======================================== */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    z-index: 3000;
+    background: var(--navy);
+    color: var(--gold);
+    padding: 10px 16px;
+    border-radius: 0 0 var(--r-md) var(--r-md);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+:focus-visible {
+    outline: 3px solid var(--gold-dark);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   Buttons (new system; legacy btn-* classes still work)
+   ======================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 22px;
+    border-radius: var(--r-pill);
+    border: 2px solid transparent;
+    font-family: var(--body-font);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn--primary {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+}
+
+.btn--primary:hover {
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
+}
+
+.btn--secondary {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+}
+
+.btn--secondary:hover {
+    background: var(--navy-700);
+}
+
+.btn--ghost {
+    background: transparent;
+    border-color: var(--navy);
+    color: var(--navy);
+}
+
+.btn--ghost:hover {
+    background: var(--navy);
+    color: var(--white);
+}
+
+/* ========================================
+   Hours status (live via /js/hours.js, static fallback otherwise)
+   ======================================== */
+.hours-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.hours-status__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--gold-dark);
+    flex: none;
+}
+
+.hours-status[data-open="true"] [data-status] {
+    color: var(--open);
+}
+
+.hours-status[data-open="true"] .hours-status__dot {
+    background: var(--open);
+    box-shadow: 0 0 0 3px rgba(31, 122, 77, 0.18);
+}
+
+.hours-status[data-open="false"] [data-status] {
+    color: var(--closed);
+}
+
+.hours-status[data-open="false"] .hours-status__dot {
+    background: var(--closed);
+}
+
+.hours-status__sep {
+    color: var(--text-medium);
+}
+
+.hours-status [data-detail] {
+    font-weight: 500;
+    color: var(--text-medium);
+}
+
+/* ========================================
+   Store strip (under the header, every page)
+   ======================================== */
+.store-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(33, 47, 86, 0.12);
+    font-family: var(--body-font);
+    font-size: 13px;
+}
+
+.store-strip__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    padding: 8px 16px;
+}
+
+.store-strip__cell + .store-strip__cell {
+    border-left: 1px solid rgba(33, 47, 86, 0.12);
+}
+
+.store-strip__name {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.store-strip__name:hover {
+    color: var(--gold-dark);
+}
+
+.store-strip__address,
+.store-strip__phone {
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.store-strip__address:hover,
+.store-strip__phone:hover {
+    text-decoration: underline;
+}
+
+.store-strip__phone {
+    font-weight: 600;
+}
+
+/* ========================================
+   Hours table
+   ======================================== */
+.hours-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 12px 0;
+}
+
+.hours-table th,
+.hours-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(33, 47, 86, 0.1);
+    text-align: left;
+}
+
+.hours-table th {
+    font-weight: 500;
+    color: var(--text-medium);
+}
+
+.hours-table td {
+    text-align: right;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.hours-table tr.is-closed td {
+    color: var(--closed);
+}
+
+.hours-table tr.is-today th,
+.hours-table tr.is-today td {
+    background: var(--gold-100);
+    font-weight: 700;
+    color: var(--navy);
+}
+
+/* ========================================
+   Store cards (home, about, contact)
+   ======================================== */
+.visit-us .container {
+    max-width: 1100px;
+}
+
+.store-card {
+    background: white;
+    border-radius: var(--r-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.store-card__head h3 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--navy);
+    margin: 0;
+}
+
+.store-card__head h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.store-card__head h3 a:hover {
+    color: var(--gold-dark);
+}
+
+.store-card__tagline {
+    color: var(--text-medium);
+    font-size: 14px;
+    margin: 2px 0 0;
+}
+
+.store-card__status {
+    margin: 0;
+}
+
+.store-card__address,
+.store-card__line {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-style: normal;
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.store-card__address i,
+.store-card__line i {
+    color: var(--gold-dark);
+    width: 18px;
+    margin-top: 4px;
+    flex: none;
+}
+
+.store-card__address a,
+.store-card__line a {
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.store-card__address a:hover,
+.store-card__line a:hover {
+    text-decoration: underline;
+}
+
+.store-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.store-card iframe {
+    margin-top: 8px;
+}
+
+/* ========================================
+   Footer (four-column with store NAP)
+   ======================================== */
+.footer {
+    text-align: left;
+    padding: 56px 20px 20px;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 0.8fr;
+    gap: 40px;
+}
+
+.footer-brand .footer-logo {
+    justify-content: flex-start;
+    margin-bottom: 16px;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    max-width: 320px;
+}
+
+.footer-brand .footer-social {
+    margin-bottom: 0;
+}
+
+.footer-brand .footer-social a:first-child {
+    margin-left: 0;
+}
+
+.footer-heading {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold);
+    margin: 0 0 12px;
+}
+
+.footer-heading a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-heading a:hover {
+    text-decoration: underline;
+}
+
+.footer-store address {
+    font-style: normal;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.footer-store a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-store a:hover {
+    color: var(--gold);
+}
+
+.footer-store p {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.footer-hours {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.footer-store .hours-status {
+    color: white;
+    font-size: 13px;
+}
+
+.footer-store .hours-status [data-detail],
+.footer-store .hours-status__sep {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-store .hours-status[data-open="true"] [data-status] {
+    color: #7fd6a5;
+}
+
+.footer-store .hours-status[data-open="false"] [data-status] {
+    color: #ff9d94;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    width: fit-content;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-links .shop-link {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+}
+
+.footer-bottom .footer-sub-links {
+    margin-bottom: 12px;
+}
+
+/* ========================================
+   Location pages
+   ======================================== */
+.page-hero--store {
+    background-image: var(--hero-image);
+    background-image: image-set(var(--hero-image-webp) type("image/webp"), var(--hero-image) type("image/jpeg"));
+    height: auto;
+    min-height: 360px;
+    padding: 70px 20px;
+}
+
+.page-hero__kicker {
+    position: relative;
+    z-index: 2;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    margin: 0 0 8px;
+}
+
+.page-hero__status {
+    margin-top: 16px;
+}
+
+.page-hero__status .hours-status {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 16px;
+    border-radius: var(--r-pill);
+}
+
+.page-hero p.page-hero__status {
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    font-size: 13px;
+    color: var(--text-medium);
+}
+
+.answer {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--navy);
+    border-left: 4px solid var(--gold);
+    padding-left: 18px;
+    margin-bottom: 22px;
+}
+
+.store-facts__grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.store-facts__intro p {
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.store-facts__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.store-facts__card {
+    background: white;
+    border-radius: var(--r-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--gold);
+}
+
+.store-facts__card h2 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--navy);
+    margin: 0 0 10px;
+}
+
+.store-facts__note {
+    font-size: 13px;
+    color: var(--text-medium);
+    margin: 0 0 12px;
+}
+
+.store-facts__holiday {
+    font-size: 14px;
+    background: var(--gold-100);
+    padding: 8px 12px;
+    border-radius: var(--r-sm);
+    margin: 0 0 12px;
+}
+
+.store-facts__card address {
+    font-style: normal;
+}
+
+.store-facts__card address p {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+    margin: 0 0 8px;
+}
+
+.store-facts__card address i {
+    color: var(--gold-dark);
+    width: 18px;
+    margin-top: 3px;
+}
+
+.store-facts__card address a {
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.store-facts__card address a:hover {
+    text-decoration: underline;
+}
+
+.store-map {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.store-map__text .section-heading {
+    justify-content: flex-start;
+    font-size: 30px;
+}
+
+.store-map__text .section-heading::before {
+    display: none;
+}
+
+.store-map__text p {
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.store-map__text h3 {
+    font-family: var(--heading-font);
+    font-size: 20px;
+    color: var(--navy);
+    margin: 22px 0 8px;
+}
+
+.store-highlights {
+    padding-left: 20px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.store-map__fallback {
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.store-faq {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.store-faq__photo img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--r-lg);
+    display: block;
+}
+
+.store-faq__list .section-heading {
+    font-size: 30px;
+}
+
+/* ========================================
+   Hero additions
+   ======================================== */
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.btn-hero--primary {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+}
+
+.btn-hero--primary:hover {
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
+}
+
+.hero-trust {
+    margin: 26px 0 0;
+    font-size: 12px;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+/* ========================================
+   Responsive additions
+   ======================================== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .store-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .store-strip__cell {
+        justify-content: space-between;
+        padding: 6px 14px;
+        gap: 4px 10px;
+    }
+
+    .store-strip__cell + .store-strip__cell {
+        border-left: none;
+        border-top: 1px solid rgba(33, 47, 86, 0.12);
+    }
+
+    .store-strip__address,
+    .store-strip__phone {
+        display: none;
+    }
+
+    .store-strip .hours-status {
+        font-size: 13px;
+    }
+
+    .store-card {
+        padding: 24px 20px;
+    }
+
+    .store-facts__grid,
+    .store-map,
+    .store-faq {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .store-faq__photo {
+        order: 2;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .hero-actions .btn-hero {
+        width: 100%;
+        text-align: center;
     }
 }

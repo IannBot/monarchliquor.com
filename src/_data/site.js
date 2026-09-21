@@ -23,17 +23,19 @@ export default {
   nav: {
     left: [
       { label: "HOME", href: "/" },
-      { label: "ABOUT", href: "/about.html" },
       { label: "DELIVERY", href: "/delivery.html" },
+      { label: "LOCATIONS", href: "/#visit" },
     ],
     right: [
       { label: "GUIDES", href: "/guides/" },
-      { label: "BARS &amp; RESTAURANTS", href: "/bars-restaurants.html" },
+      { label: "ABOUT", href: "/about.html" },
     ],
     mobile: [
       { label: "HOME", href: "/" },
-      { label: "ABOUT", href: "/about.html" },
       { label: "DELIVERY", href: "/delivery.html" },
+      { label: "EAST AUSTIN STORE", href: "/east-austin.html" },
+      { label: "LAKEWAY STORE", href: "/lakeway.html" },
+      { label: "ABOUT", href: "/about.html" },
       { label: "GUIDES", href: "/guides/" },
       { label: "BARS &amp; RESTAURANTS", href: "/bars-restaurants.html" },
       { label: "CONTACT", href: "/contact.html" },
@@ -48,7 +50,8 @@ export default {
     ],
     footerSub: [
       { label: "Careers", href: "/careers.html" },
-      { label: "Locations", href: "/about.html#locations" },
+      { label: "East Austin Store", href: "/east-austin.html" },
+      { label: "Lakeway Store", href: "/lakeway.html" },
       { label: "Bars &amp; Restaurants", href: "/bars-restaurants.html" },
       { label: "Privacy Policy", href: "/privacy-policy.html" },
       { label: "FAQ", href: "/delivery.html#faq" },

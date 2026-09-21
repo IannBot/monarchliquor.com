@@ -50,12 +50,14 @@ export default {
     {
       storeId: "east-austin",
       label: "East Austin and Central Austin",
+      sentence: "East Austin and Central Austin",
       neighborhoods: ["East Austin", "Central Austin"],
       zips: [], // OWNER TODO
     },
     {
       storeId: "lakeway",
       label: "all Lakeway neighborhoods, Steiner Ranch, and the Lake Travis area",
+      sentence: "All Lakeway neighborhoods, Steiner Ranch, and the Lake Travis area",
       neighborhoods: ["Lakeway", "Steiner Ranch", "Lake Travis"],
       zips: [], // OWNER TODO
     },

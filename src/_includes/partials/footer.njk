@@ -1,34 +1,51 @@
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-logo">
-      <span>EST.</span>
-      <picture>
-        <source type="image/webp" srcset="/images/logo-160.webp">
-        <img src="/images/logo-160.png" alt="Monarch Liquor logo" width="80" height="80" loading="lazy" decoding="async">
-      </picture>
-      <span>{{ business.foundingYear }}</span>
-    </div>
-
-    <div class="footer-nav">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>EST.</span>
+          <picture>
+            <source type="image/webp" srcset="/images/logo-160.webp">
+            <img src="/images/logo-160.png" alt="Monarch Liquor logo" width="80" height="80" loading="lazy" decoding="async">
+          </picture>
+          <span>{{ business.foundingYear }}</span>
+        </div>
+        <p class="footer-tagline">Family-owned liquor stores in East Austin and Lakeway. Spirits, wine, and beer, in store or delivered.</p>
+        <div class="footer-social">
+          <a href="{{ business.social.facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="{{ business.social.instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+{%- for store in business.stores %}
+      <div class="footer-store">
+        <h2 class="footer-heading"><a href="{{ store.url }}">{{ store.shortName }}</a></h2>
+        <address>
+          <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">{{ store.address.street }}<br>{{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}</a>
+        </address>
+        <p><a href="{{ store.phone.href }}">{{ store.phone.display }}</a></p>
+        <p class="footer-hours">{{ hoursLib.weeklySummary(business.hours) | join("<br>") | safe }}</p>
+        <p>{% set statusStore = store %}{% include "partials/hours-status.njk" %}</p>
+      </div>
+{%- endfor %}
+      <div class="footer-links">
+        <h2 class="footer-heading">Explore</h2>
 {%- for item in site.nav.footer %}
-      <a href="{{ item.href }}">{{ item.label | safe }}</a>
+        <a href="{{ item.href }}">{{ item.label | safe }}</a>
 {%- endfor %}
+        <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="shop-link">ORDER ONLINE</a>
+      </div>
     </div>
 
-    <div class="footer-social">
-      <a href="{{ business.social.facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-        <i class="fa-brands fa-facebook-f"></i>
-      </a>
-      <a href="{{ business.social.instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-    </div>
-
-    <div class="footer-sub-links">
+    <div class="footer-bottom">
+      <div class="footer-sub-links">
 {%- for item in site.nav.footerSub %}
-      <a href="{{ item.href }}">{{ item.label | safe }}</a>
+        <a href="{{ item.href }}">{{ item.label | safe }}</a>
 {%- endfor %}
+      </div>
+      <p class="footer-copyright">&copy; <span id="copyright-year"></span> by {{ business.name }} &middot; TABC-licensed retailer &middot; Must be 21+</p>
     </div>
-
-    <p class="footer-copyright">&copy; <span id="copyright-year"></span> by {{ business.name }}</p>
   </footer>
