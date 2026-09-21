@@ -35,7 +35,7 @@ for (const f of pages) {
     catch (e) { err(p, "JSON-LD does not parse: " + e.message); }
   }
   if (!ld.length && p !== "/404.html" && p !== "/privacy-policy.html") warn(p, "no JSON-LD");
-  if (/\$50/.test(html) && !/data-confirmed/.test(html) && p !== "/privacy-policy.html") warn(p, "mentions $50 (delivery term) outside the data-driven partials");
+  if (/deliver[^.<]{0,80}\$50|\$50[^.<]{0,80}deliver/i.test(html) && p !== "/privacy-policy.html") warn(p, "mentions $50 near 'deliver' (unconfirmed delivery term outside the data-driven partials)");
   if (/OWNER TODO|TODO:/.test(html)) err(p, "TODO marker leaked into output");
 }
 

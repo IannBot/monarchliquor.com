@@ -1,8 +1,25 @@
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" aria-hidden="true">
-    <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+  <!-- Mobile Menu (slide-in drawer) -->
+  <div class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="mobile-menu__top">
+      <span class="mobile-menu__brand">Monarch Liquor</span>
+      <button class="mobile-menu-close" aria-label="Close menu"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-close"/></svg></button>
+    </div>
+    <nav class="mobile-menu__links" aria-label="Mobile">
 {%- for item in site.nav.mobile %}
-    <a href="{{ item.href }}">{{ item.label | safe }}</a>
+      <a href="{{ item.href }}">{{ item.label | safe }}</a>
 {%- endfor %}
-    <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="shop-link">SHOP NOW</a>
+    </nav>
+    <div class="mobile-menu__stores">
+{%- for store in business.stores %}
+      <div class="mobile-menu__store">
+        <a class="mobile-menu__store-name" href="{{ store.url }}">{{ store.shortName }}</a>
+        <span class="mobile-menu__store-line">{{ store.address.streetShort }} &middot; <a href="{{ store.phone.href }}">{{ store.phone.display }}</a></span>
+        {% set statusStore = store %}{% include "partials/hours-status.njk" %}
+      </div>
+{%- endfor %}
+    </div>
+    <div class="mobile-menu__actions">
+      {% order "drawer", "Order Delivery", "btn btn--primary" %}
+      <a href="/delivery.html" class="btn btn--light">Delivery info</a>
+    </div>
   </div>

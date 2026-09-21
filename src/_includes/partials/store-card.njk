@@ -7,15 +7,15 @@
   </div>
   <p class="store-card__status">{% set statusStore = store %}{% include "partials/hours-status.njk" %}</p>
   <address class="store-card__address">
-    <i class="fa-solid fa-map-marker-alt" aria-hidden="true"></i>
+    <svg class="icon icon--map-pin" aria-hidden="true" focusable="false"><use href="#i-map-pin"/></svg>
     <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">{{ store.address.street }}<br>{{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}</a>
   </address>
-  <p class="store-card__line"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="{{ store.phone.href }}">{{ store.phone.display }}</a></p>
+  <p class="store-card__line"><svg class="icon icon--phone" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg> <a href="{{ store.phone.href }}">{{ store.phone.display }}</a></p>
 {%- if cardFull %}
-  <p class="store-card__line"><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:{{ store.email }}">{{ store.email }}</a></p>
+  <p class="store-card__line"><svg class="icon icon--mail" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg> <a href="mailto:{{ store.email }}">{{ store.email }}</a></p>
   {% include "partials/hours-table.njk" %}
 {%- else %}
-  <p class="store-card__line"><i class="fa-solid fa-clock" aria-hidden="true"></i> {{ hoursLib.weeklySummary(business.hours) | join(" · ") }}</p>
+  <p class="store-card__line"><svg class="icon icon--clock" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> {{ hoursLib.weeklySummary(business.hours) | join(" · ") }}</p>
 {%- endif %}
   <div class="store-card__actions">
     <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="btn btn--primary shop-link" data-cta="store-card-{{ store.id }}">Order Delivery</a>

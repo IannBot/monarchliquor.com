@@ -3,10 +3,10 @@
   <nav class="sticky-cta" aria-label="Quick actions">
     {% order "sticky", "Order Delivery", "sticky-cta__order" %}
 {%- if phones | length == 1 %}
-    <a class="sticky-cta__btn" href="{{ business.stores[0].phone.href }}"><i class="fa-solid fa-phone" aria-hidden="true"></i><span>Call</span></a>
+    <a class="sticky-cta__btn" href="{{ business.stores[0].phone.href }}"><svg class="icon icon--phone" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span>Call</span></a>
 {%- else %}
     <details class="sticky-cta__menu">
-      <summary class="sticky-cta__btn"><i class="fa-solid fa-phone" aria-hidden="true"></i><span>Call</span></summary>
+      <summary class="sticky-cta__btn"><svg class="icon icon--phone" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span>Call</span></summary>
       <div class="sticky-cta__popover">
 {%- for store in business.stores %}
         <a href="{{ store.phone.href }}">{{ store.shortName }} <span>{{ store.phone.display }}</span></a>
@@ -15,7 +15,7 @@
     </details>
 {%- endif %}
     <details class="sticky-cta__menu">
-      <summary class="sticky-cta__btn"><i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i><span>Directions</span></summary>
+      <summary class="sticky-cta__btn"><svg class="icon icon--navigation" aria-hidden="true" focusable="false"><use href="#i-navigation"/></svg><span>Directions</span></summary>
       <div class="sticky-cta__popover">
 {%- for store in business.stores %}
         <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">{{ store.shortName }} <span>{{ store.address.streetShort }}</span></a>

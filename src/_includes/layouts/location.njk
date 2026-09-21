@@ -28,8 +28,8 @@ layout: layouts/base.njk
           <p>{{ store.blurb }}</p>
           <div class="store-facts__actions">
             <a href="{{ site.bottlecapps.home }}" target="_blank" rel="noopener" class="btn btn--primary shop-link" data-cta="location-{{ store.id }}">Order Delivery from {{ store.shortName }}</a>
-            <a href="{{ store.phone.href }}" class="btn btn--secondary"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call {{ store.phone.display }}</a>
-            <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn--ghost"><i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i> Directions</a>
+            <a href="{{ store.phone.href }}" class="btn btn--secondary"><svg class="icon icon--phone" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg> Call {{ store.phone.display }}</a>
+            <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn--ghost"><svg class="icon icon--navigation" aria-hidden="true" focusable="false"><use href="#i-navigation"/></svg> Directions</a>
           </div>
         </div>
         <div class="store-facts__card">
@@ -42,9 +42,9 @@ layout: layouts/base.njk
           <p class="store-facts__holiday"><strong>{{ h.label }} ({{ h.date }}):</strong> {% if h.closed %}Closed{% else %}{{ hoursLib.fmt12(h.open) }}–{{ hoursLib.fmt12(h.close) }}{% endif %}</p>
 {%- endfor %}
           <address>
-            <p><i class="fa-solid fa-map-marker-alt" aria-hidden="true"></i> <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">{{ store.address.street }}, {{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}</a></p>
-            <p><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="{{ store.phone.href }}">{{ store.phone.display }}</a></p>
-            <p><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:{{ store.email }}">{{ store.email }}</a></p>
+            <p><svg class="icon icon--map-pin" aria-hidden="true" focusable="false"><use href="#i-map-pin"/></svg> <a href="{{ store.directionsUrl }}" target="_blank" rel="noopener noreferrer">{{ store.address.street }}, {{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}</a></p>
+            <p><svg class="icon icon--phone" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg> <a href="{{ store.phone.href }}">{{ store.phone.display }}</a></p>
+            <p><svg class="icon icon--mail" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg> <a href="mailto:{{ store.email }}">{{ store.email }}</a></p>
           </address>
         </div>
       </div>
@@ -69,7 +69,7 @@ layout: layouts/base.njk
           <h3>We deliver to</h3>
           <p>{{ zone.sentence }}. <a href="/delivery.html">Delivery details</a>.</p>
 {%- endif %}
-          <p><a href="{{ store.reviewUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn--ghost"><i class="fa-solid fa-star" aria-hidden="true"></i> Leave a Google review</a></p>
+          <p><a href="{{ store.reviewUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn--ghost"><svg class="icon icon--star" aria-hidden="true" focusable="false"><use href="#i-star"/></svg> Leave a Google review</a></p>
         </div>
         <div class="store-map__embed">
           <iframe

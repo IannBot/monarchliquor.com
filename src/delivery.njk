@@ -114,10 +114,10 @@ schema:
 {%- set zs = business.stores | storeById(zone.storeId) %}
           <div class="location-card reveal">
             <h3><a href="{{ zs.url }}">From {{ zs.shortName }}</a></h3>
-            <p><i class="fa-solid fa-map-marker-alt"></i> {{ zs.address.street }}, {{ zs.address.locality }}, {{ zs.address.region }} {{ zs.address.postalCode }}</p>
-            <p><i class="fa-solid fa-truck"></i> {% if zone.confirmed %}Serving {{ zone.label }}{% else %}{{ delivery.zoneFallback }}{% endif %}</p>
-            <p><i class="fa-solid fa-phone"></i> <a href="{{ zs.phone.href }}">{{ zs.phone.display }}</a></p>
-            <p><i class="fa-solid fa-clock"></i> {% set statusStore = zs %}{% include "partials/hours-status.njk" %}</p>
+            <p><svg class="icon icon--map-pin" aria-hidden="true" focusable="false"><use href="#i-map-pin"/></svg> {{ zs.address.street }}, {{ zs.address.locality }}, {{ zs.address.region }} {{ zs.address.postalCode }}</p>
+            <p><svg class="icon icon--truck" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg> {% if zone.confirmed %}Serving {{ zone.label }}{% else %}{{ delivery.zoneFallback }}{% endif %}</p>
+            <p><svg class="icon icon--phone" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg> <a href="{{ zs.phone.href }}">{{ zs.phone.display }}</a></p>
+            <p><svg class="icon icon--clock" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> {% set statusStore = zs %}{% include "partials/hours-status.njk" %}</p>
           </div>
 {%- endfor %}
         </div>
@@ -130,17 +130,17 @@ schema:
       <h2 class="section-heading reveal">Curbside Pickup</h2>
       <div class="steps-grid">
         <div class="step-card reveal">
-          <i class="fa-solid fa-cart-shopping"></i>
+          <svg class="icon icon--cart" aria-hidden="true" focusable="false"><use href="#i-cart"/></svg>
           <h3>Order Ahead</h3>
           <p>Place your order online or call the store and choose pickup. We'll have it ready and waiting.</p>
         </div>
         <div class="step-card reveal">
-          <i class="fa-solid fa-car"></i>
+          <svg class="icon icon--car" aria-hidden="true" focusable="false"><use href="#i-car"/></svg>
           <h3>Pull Up</h3>
           <p>Park out front and give us a ring at {{ business.phone.display }} to let us know you've arrived.</p>
         </div>
         <div class="step-card reveal">
-          <i class="fa-solid fa-id-card"></i>
+          <svg class="icon icon--id-card" aria-hidden="true" focusable="false"><use href="#i-id-card"/></svg>
           <h3>Show Your ID</h3>
           <p>We'll bring your order to the car, check your ID, and send you on your way in under a minute.</p>
         </div>

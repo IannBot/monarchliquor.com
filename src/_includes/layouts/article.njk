@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+tags: [guides]
+ogType: article
+sitemap: { priority: "0.7", changefreq: monthly }
+---
+{#- Guide article layout. Front matter: title, description, headline, summary,
+    datePublished, dateModified, image, card, cardTitle, crumb, schema.article.
+    Body is the article HTML (h2/h3 sections). -#}
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span><a href="/guides/">Guides</a><span class="sep">/</span>{{ crumb or cardTitle or headline }}
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+      <h1><em>{{ headline }}</em></h1>
+      <p class="article-meta">By the Monarch Liquor team &middot; Updated {{ (dateModified or datePublished) | monthYear }}</p>
+    </header>
+
+    <!-- Article Body -->
+    <article class="content-section" style="padding-top: 20px;">
+      <div class="content-narrow prose">
+        <p class="answer">{{ summary }}</p>
+{{ content | safe }}
+      </div>
+    </article>
+
+    <!-- CTA -->
+    <section class="cta-band">
+      <h2><em>{{ ctaHeading or "Found Your Next Bottle?" }}</em></h2>
+      <p>{{ ctaText or "Everything in our guides is on the shelf at both stores, or a special order away. Order online for delivery or curbside pickup." }}{% if delivery.terms.freeOver.confirmed %} {{ delivery.terms.freeOver.text }}{% endif %}</p>
+      {% order "guide-cta", "ORDER DELIVERY", "btn-primary" %}
+      <a href="/delivery.html" class="btn-outline-light">DELIVERY INFO</a>
+    </section>

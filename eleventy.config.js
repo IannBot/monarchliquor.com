@@ -29,7 +29,7 @@ export default function (eleventyConfig) {
   });
 
   // Static assets copied as-is.
-  for (const p of ["src/css", "src/js", "src/images", "src/site.webmanifest", "src/CNAME", "src/.nojekyll"]) {
+  for (const p of ["src/css", "src/js", "src/images", "src/fonts", "src/site.webmanifest", "src/CNAME", "src/.nojekyll"]) {
     eleventyConfig.addPassthroughCopy(p);
   }
 
@@ -52,6 +52,9 @@ export default function (eleventyConfig) {
     if (typeof d === "string") return d.slice(0, 10);
     return new Date(d).toISOString().slice(0, 10);
   });
+
+  // "Sept 2026" style month label for article bylines.
+  eleventyConfig.addFilter("monthYear", (d) => new Date(typeof d === "string" ? d + "T12:00:00Z" : d).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" }));
 
   // Absolute URL helper for sitemap/OG.
   eleventyConfig.addFilter("abs", (path, site) => site.url.replace(/\/$/, "") + path);
