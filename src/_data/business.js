@@ -3,7 +3,18 @@
 //
 // OWNER TODO markers indicate values still to be confirmed or supplied.
 
+import { statutoryHolidays } from "../../lib/hours.js";
+
 const SHARED_PHONE = { display: "(512) 614-4949", tel: "+15126144949", href: "tel:5126144949" };
+
+// Statutory Texas closures for this year and next, plus any manual overrides.
+function mergeHolidays(manual) {
+  const year = new Date().getFullYear();
+  const auto = [...statutoryHolidays(year), ...statutoryHolidays(year + 1)];
+  const byDate = new Map(auto.map((h) => [h.date, h]));
+  for (const h of manual) byDate.set(h.date, h);
+  return [...byDate.values()].sort((a, b) => a.date.localeCompare(b.date));
+}
 
 export default {
   name: "Monarch Liquor",
@@ -36,10 +47,14 @@ export default {
       sun: null,
     },
     sundayNote: "Closed Sundays (Texas law)",
+    holidayNote: "Open every holiday except Sundays, Thanksgiving Day, Christmas Day, and New Year's Day.",
     // Holiday overrides. OWNER TODO: supply the coming year's holiday hours.
     // Shape: { date: "2026-12-25", label: "Christmas Day", closed: true }
     //     or { date: "2026-12-24", label: "Christmas Eve", open: "10:00", close: "18:00" }
-    holidays: [],
+    // Manual entries here override the automatic ones for the same date.
+    holidays: mergeHolidays([
+      // e.g. { date: "2026-12-24", label: "Christmas Eve", open: "10:00", close: "18:00" },
+    ]),
   },
 
   stores: [

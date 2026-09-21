@@ -65,7 +65,7 @@ schema:
         <dl class="terms-list">
           <div class="terms-list__row">
             <dt>Hours</dt>
-            <dd>{{ hoursLib.weeklySummary(business.hours) | join(" · ") }}. {{ business.hours.sundayNote }}.</dd>
+            <dd>{{ hoursLib.weeklySummary(business.hours) | join(" · ") }}. {{ business.hours.sundayNote }}. {{ business.hours.holidayNote }}</dd>
           </div>
           <div class="terms-list__row">
             <dt>Delivery fee</dt>

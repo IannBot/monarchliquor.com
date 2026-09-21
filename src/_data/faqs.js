@@ -50,6 +50,10 @@ export default {
       a: "No. Texas law requires package liquor stores to close on Sundays, so both Monarch Liquor stores are closed every Sunday. We are open Monday through Saturday from 10am to 9pm.",
     },
     {
+      q: "Is Monarch Liquor open on holidays?",
+      a: "Yes. Both stores are open every holiday except Sundays, Thanksgiving Day, Christmas Day, and New Year's Day, when Texas law requires liquor stores to close. Regular hours apply on all other holidays: Monday through Saturday, 10am to 9pm.",
+    },
+    {
       q: "What time does Monarch Liquor close?",
       a: "Both stores close at 9pm Monday through Saturday and are closed on Sunday. Holiday hours are posted on each store page when they differ.",
     },

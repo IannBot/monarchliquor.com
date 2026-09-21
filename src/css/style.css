@@ -2940,3 +2940,9 @@ body {
     color: rgba(255, 255, 255, 0.82);
     font-size: 13px;
 }
+
+.store-card__note {
+    font-size: 13px;
+    color: var(--text-medium);
+    margin: -4px 0 0;
+}

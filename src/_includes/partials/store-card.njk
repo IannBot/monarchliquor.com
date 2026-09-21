@@ -14,6 +14,7 @@
 {%- if cardFull %}
   <p class="store-card__line"><svg class="icon icon--mail" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg> <a href="mailto:{{ store.email }}">{{ store.email }}</a></p>
   {% include "partials/hours-table.njk" %}
+  <p class="store-card__note">{{ business.hours.holidayNote }}</p>
 {%- else %}
   <p class="store-card__line"><svg class="icon icon--clock" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> {{ hoursLib.weeklySummary(business.hours) | join(" · ") }}</p>
 {%- endif %}

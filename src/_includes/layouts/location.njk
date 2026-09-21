@@ -36,7 +36,7 @@ layout: layouts/base.njk
           <h2>Store hours &amp; info</h2>
           <p class="store-card__status">{% set statusStore = store %}{% include "partials/hours-status.njk" %}</p>
           {% include "partials/hours-table.njk" %}
-          <p class="store-facts__note">{{ business.hours.sundayNote }}</p>
+          <p class="store-facts__note">{{ business.hours.sundayNote }}. {{ business.hours.holidayNote }}</p>
 {%- set upcoming = hoursLib.upcomingHolidays(business.hours) %}
 {%- for h in upcoming %}
           <p class="store-facts__holiday"><strong>{{ h.label }} ({{ h.date }}):</strong> {% if h.closed %}Closed{% else %}{{ hoursLib.fmt12(h.open) }}–{{ hoursLib.fmt12(h.close) }}{% endif %}</p>

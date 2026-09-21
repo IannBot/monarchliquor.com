@@ -9,7 +9,7 @@ layout: false
 
 ## Key facts
 
-- Hours (both stores): {{ hoursLib.weeklySummary(business.hours) | join("; ") | safe }}. {{ business.hours.sundayNote | safe }}.
+- Hours (both stores): {{ hoursLib.weeklySummary(business.hours) | join("; ") | safe }}. {{ business.hours.sundayNote | safe }}. {{ business.hours.holidayNote | safe }}
 - Time zone: America/Chicago (Central Time).
 - Online ordering (delivery and curbside): {{ site.bottlecapps.home | safe }}
 - Website: {{ site.url | safe }}/
