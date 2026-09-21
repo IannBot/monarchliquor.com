@@ -2920,3 +2920,23 @@ body {
         min-height: 62vh;
     }
 }
+
+/* Accessibility: footer contrast and tap targets (Lighthouse) */
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.footer-bottom .footer-sub-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 6px;
+}
+
+.footer-sub-links a {
+    display: inline-block;
+    padding: 10px 8px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 13px;
+}
