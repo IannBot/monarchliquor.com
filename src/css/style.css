@@ -3145,3 +3145,301 @@ span.marketplace-badge {
     flex: none;
     display: block;
 }
+
+/* ========================================
+   TYPOGRAPHY SYSTEM (2026 audit)
+   ----------------------------------------
+   Two families, one job each:
+     Libre Baskerville (serif)  = display + headings. Italic for brand/display
+                                  moments (h1, section titles, card titles),
+                                  upright inside long-form articles.
+     Source Sans 3 (sans)       = everything else: body, UI, labels, buttons.
+   One modular scale (below). These rules come last in the file on purpose so
+   they win over the older per-component sizes above.
+   ======================================== */
+@font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('/fonts/source-sans-3-400-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Source Sans 3';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/source-sans-3-400-italic.woff2') format('woff2');
+}
+
+:root {
+    --body-font: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Scale (16px base) */
+    --fs-caption: 0.8125rem;   /* 13px  captions, meta, footer links */
+    --fs-small: 0.9375rem;     /* 15px  secondary text, card blurbs, FAQ answers */
+    --fs-body: 1.0625rem;      /* 17px  body copy (Source Sans runs small) */
+    --fs-lead: 1.1875rem;      /* 19px  answer paragraphs, intros */
+    --fs-h4: 1.25rem;          /* 20px  small headings: step cards, footer, prose h3 */
+    --fs-h3: 1.625rem;         /* 26px  card titles */
+    --fs-h2: clamp(1.875rem, 1.45rem + 1.7vw, 2.5rem);   /* 30–40px section titles */
+    --fs-h1: clamp(2.375rem, 1.6rem + 3vw, 3.5rem);      /* 38–56px page titles */
+    --fs-label: 0.8125rem;     /* 13px  uppercase UI labels */
+    --fs-nav: 0.875rem;        /* 14px  header nav */
+
+    --track-label: 0.1em;      /* uppercase labels and buttons */
+    --track-kicker: 0.25em;    /* hero sub-lines and kickers */
+
+    --lh-tight: 1.15;
+    --lh-heading: 1.25;
+    --lh-body: 1.65;
+    --lh-prose: 1.75;
+}
+
+/* --- Base --- */
+body {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+}
+
+/* --- Display headings: italic serif --- */
+.hero h1,
+.page-hero h1,
+.article-header h1 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--fs-h1);
+    line-height: var(--lh-tight);
+    letter-spacing: -0.01em;
+}
+
+.section-heading,
+.cta-band h2,
+.join-team h2,
+.story h2,
+.faq-page h2,
+.cta-inline h2,
+.marketplaces__text h2,
+.store-facts__card h2,
+.store-map__text .section-heading,
+.store-faq__list .section-heading {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-heading);
+}
+
+/* Secondary section titles stay a step smaller than the page's main section titles */
+.store-facts__card h2,
+.cta-inline h2,
+.marketplaces__text h2,
+.faq-page h2 {
+    font-size: var(--fs-h3);
+}
+
+/* --- Card / item titles --- */
+.category-card h3,
+.store-card__head h3,
+.location-card h3,
+.tab-text h3 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--fs-h3);
+    line-height: var(--lh-heading);
+}
+
+.step-card h3,
+.footer-heading,
+.store-map__text h3,
+.zone-checker label,
+.mobile-menu__brand,
+.mobile-menu .mobile-menu__store-name,
+.terms-list dt {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--fs-h4);
+    line-height: var(--lh-heading);
+}
+
+/* --- Long-form articles: upright serif headings for readability --- */
+.prose h2 {
+    font-family: var(--heading-font);
+    font-style: normal;
+    font-weight: 700;
+    font-size: var(--fs-h3);
+    line-height: var(--lh-heading);
+    margin: 40px 0 14px;
+}
+
+.prose h3 {
+    font-family: var(--heading-font);
+    font-style: normal;
+    font-weight: 700;
+    font-size: var(--fs-h4);
+    margin: 28px 0 10px;
+}
+
+.prose p,
+.prose li,
+.story-text p,
+.store-facts__intro p,
+.store-map__text p,
+.terms-list dd {
+    font-size: var(--fs-body);
+    line-height: var(--lh-prose);
+}
+
+.answer {
+    font-size: var(--fs-lead);
+    line-height: 1.6;
+}
+
+.content-intro,
+.card-blurb,
+.step-card p,
+.faq-list details p,
+.footer-tagline,
+.store-card__tagline,
+.marketplaces__text p,
+.about-blurb,
+.store-facts__note,
+.store-facts__holiday,
+.cta-band p,
+.cta-inline p {
+    font-size: var(--fs-small);
+    line-height: var(--lh-body);
+}
+
+.faq-list summary {
+    font-size: var(--fs-body);
+    font-weight: 600;
+}
+
+/* --- UI labels: uppercase sans, one tracking value --- */
+.nav-left a,
+.nav-right a,
+.footer-nav a,
+.footer-links a,
+.mobile-menu__links a {
+    font-family: var(--body-font);
+    font-weight: 600;
+    letter-spacing: var(--track-label);
+}
+
+.nav-left a,
+.nav-right a {
+    font-size: var(--fs-nav);
+}
+
+.footer-nav a,
+.footer-links a,
+.footer-sub-links a,
+.article-meta,
+.page-hero__kicker {
+    font-size: var(--fs-caption);
+}
+
+.article-meta,
+.page-hero__kicker,
+.hero p,
+.hero-sub,
+.page-hero p:not(.page-hero__status):not(.page-hero__actions),
+.announcement-bar {
+    letter-spacing: var(--track-kicker);
+    font-size: var(--fs-caption);
+    text-transform: uppercase;
+}
+
+.announcement-bar {
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+}
+
+.nav-center span,
+.footer-logo span {
+    font-family: var(--heading-font);
+    font-size: var(--fs-caption);
+    letter-spacing: 0.25em;
+}
+
+/* --- Buttons: one voice --- */
+.btn,
+.btn-shop,
+.btn-hero,
+.btn-primary,
+.btn-outline,
+.btn-outline-light,
+.sticky-cta__order,
+.nav-order-mobile,
+.mobile-menu__actions .btn {
+    font-family: var(--body-font);
+    font-weight: 700;
+    font-size: var(--fs-label);
+    letter-spacing: var(--track-label);
+    text-transform: uppercase;
+}
+
+.sticky-cta__btn {
+    font-family: var(--body-font);
+    font-weight: 600;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+}
+
+/* --- Status + strip --- */
+.hours-status {
+    font-family: var(--body-font);
+    font-size: var(--fs-small);
+    font-weight: 600;
+}
+
+.store-strip {
+    font-size: var(--fs-small);
+}
+
+.store-strip__status .hours-status {
+    font-size: var(--fs-caption);
+}
+
+.store-strip__name {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.store-card__address,
+.store-card__line,
+.store-facts__card address p,
+.location-card p {
+    font-size: var(--fs-small);
+}
+
+/* --- Tables --- */
+.hours-table,
+.guide-table {
+    font-size: var(--fs-small);
+}
+
+.guide-table th {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--fs-small);
+}
+
+@media (max-width: 768px) {
+    :root {
+        --fs-body: 1rem;
+        --fs-lead: 1.125rem;
+    }
+
+    .nav-left a,
+    .nav-right a {
+        font-size: var(--fs-nav);
+    }
+}

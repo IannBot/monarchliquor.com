@@ -27,6 +27,10 @@ Other scripts: `npm run build` (writes `_site/`), `npm run images` (regenerates 
 | Open/closed logic (build and browser) | `lib/hours.js` |
 | Styles (one file, no build step) | `src/css/style.css` |
 
+### Typography
+
+Two self-hosted families, one job each: **Libre Baskerville** for headings (italic for display moments such as page titles, section titles, and card titles; upright inside article bodies) and **Source Sans 3** for body copy, UI, labels, and buttons. Sizes come from the `--fs-*` tokens at the end of `src/css/style.css` (caption 13, small 15, body 17, lead 19, h4 20, h3 26, h2 30–40 fluid, h1 38–56 fluid). Uppercase labels use `--track-label`; hero sub-lines and kickers use `--track-kicker`. Add new components with those tokens rather than pixel sizes.
+
 Edit a fact once in the data file and every page, the footer, the store strip, the FAQ, `llms.txt`, and the schema update together.
 
 ### Changing hours or adding holiday hours
