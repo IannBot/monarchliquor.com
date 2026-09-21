@@ -69,7 +69,7 @@ Copy an existing file in `src/guides/`, set `title`, `description`, `headline`, 
 2. **Google Analytics 4.** Create a property at analytics.google.com, copy the Measurement ID (`G-…`) into `ga4Id` in `src/_data/site.js`. Events `order_click`, `call_click`, `directions_click`, and `email_click` appear in GA4 automatically; mark `order_click` as a conversion.
 3. **Google Search Console.** Add the domain property, verify by DNS TXT, submit `https://monarchliquor.com/sitemap.xml`, and request indexing for `/east-austin.html`, `/lakeway.html`, `/delivery.html`, and `/faq.html`.
 4. **Google Business Profile.** For each listing: set the website to that store's page (`/east-austin.html`, `/lakeway.html`), confirm hours match (Mon–Sat 10am–9pm, Sunday closed), set the "Order online" link to BottleCapps, add the new photos, and copy each listing's Place ID so the review links can use `https://search.google.com/local/writereview?placeid=…` (paste into `reviewUrl` and `gbpUrl` in `business.js`).
-5. **Delivery terms.** Fee, timing, returns, special orders, and the $300 card rule are confirmed. Still open in `src/_data/delivery.js`: gift orders, and the delivery zones with ZIP lists.
+5. **Delivery terms.** Fee, timing, gifts, returns, special orders, and the $300 card rule are confirmed. Still open in `src/_data/delivery.js`: the delivery zones with ZIP lists.
 6. **Photos.** Supply the shots in `src/_data/photos.js`.
 7. **Emails.** Decide whether both stores use `Retail@monarchliquor.com`; update `email` per store and `careersEmail`.
 8. **BottleCapps category URLs.** Paste spirits/wine/beer category links into `site.js` so category cards and guide callouts deep-link.

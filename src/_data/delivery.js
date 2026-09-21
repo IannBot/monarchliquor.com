@@ -3,7 +3,7 @@
 // and the build prints a warning for anything still unconfirmed.
 //
 // Terms below marked confirmed were supplied by the owner on 2026-09-21.
-// OWNER TODO: gift orders and the delivery zones (with ZIP lists) are still open.
+// OWNER TODO: the delivery zones (with ZIP lists) are still open.
 
 const EAST = "(512) 614-4949";
 const LAKE = "(512) 300-0065";
@@ -29,7 +29,7 @@ export default {
     gifts: {
       text: "Yes! Add delivery instructions at checkout and we'll bring the order to your recipient. The recipient must be 21 or older and show valid ID when accepting the delivery.",
       fallback: `Call either store to arrange a gift delivery: East Austin ${EAST} or Lakeway ${LAKE}.`,
-      confirmed: false,
+      confirmed: true,
     },
     returns: {
       text: "Not permitted. Under TABC law, alcohol can't be returned once sold, so please check your order at handoff.",
