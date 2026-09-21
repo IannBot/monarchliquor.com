@@ -41,8 +41,11 @@ layout: false
 {%- set zs = business.stores | storeById(zone.storeId) %}
 - {{ zs.shortName | safe }} store delivery area: {% if zone.confirmed %}{{ zone.sentence | safe }}{% else %}{{ delivery.zoneFallback | safe }}{% endif %}
 {%- endfor %}
-- Delivery fee: {% if delivery.terms.freeOver.confirmed %}{{ delivery.terms.freeOver.text | safe }} {{ delivery.terms.smallOrderFee.text if delivery.terms.smallOrderFee.confirmed else delivery.terms.smallOrderFee.fallback | safe }}{% else %}{{ delivery.terms.freeOver.fallback | safe }}{% endif %}
-- Timing: {{ delivery.terms.sameDay.text if delivery.terms.sameDay.confirmed else delivery.terms.sameDay.fallback | safe }}
+- Delivery fee: {{ (delivery.terms.fee.text if delivery.terms.fee.confirmed else delivery.terms.fee.fallback) | safe }}
+- Timing: {{ (delivery.terms.timing.text if delivery.terms.timing.confirmed else delivery.terms.timing.fallback) | safe }}
+- Large orders: {{ delivery.terms.largeOrders.text | safe }}
+- Returns: {{ delivery.terms.returns.text | safe }}
+- Ordering direct vs apps: {{ delivery.directAdvantage | safe }}
 - ID policy: {{ delivery.terms.idPolicy.text | safe }}
 - No delivery on Sundays (Texas law requires package stores to close on Sunday).
 - Details: {{ site.url | safe }}/delivery.html

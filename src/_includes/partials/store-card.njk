@@ -1,6 +1,15 @@
 {#- One store as a card. Set `store` before including; set `cardFull = true`
     for the email + hours table + map variant (about, contact). -#}
-<div class="store-card{% if cardFull %} store-card--full{% endif %} reveal" id="store-{{ store.id }}">
+{%- set cardPhoto = photos[store.photos.hero] %}
+<div class="store-card{% if cardFull %} store-card--full{% endif %}{% if cardPhoto.base %} store-card--photo{% endif %} reveal" id="store-{{ store.id }}">
+{%- if cardPhoto.base %}
+  <a class="store-card__photo" href="{{ store.url }}" tabindex="-1" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="{{ cardPhoto.base }}-768.webp 768w, {{ cardPhoto.base }}-1280.webp 1280w" sizes="(max-width: 768px) 92vw, 540px">
+      <img src="{{ cardPhoto.base }}-768.jpg" srcset="{{ cardPhoto.base }}-768.jpg 768w, {{ cardPhoto.base }}-1280.jpg 1280w" sizes="(max-width: 768px) 92vw, 540px" width="768" height="432" alt="{{ cardPhoto.alt }}" loading="lazy" decoding="async">
+    </picture>
+  </a>
+{%- endif %}
   <div class="store-card__head">
     <h3><a href="{{ store.url }}">{{ store.shortName }}</a></h3>
     <p class="store-card__tagline">{{ store.tagline }}</p>

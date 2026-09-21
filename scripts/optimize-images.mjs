@@ -14,7 +14,10 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'images-src');
-const OUT = path.join(ROOT, 'images');
+const OUT = path.join(ROOT, 'src', 'images');
+// Optional: pass output base names to process only those entries, e.g.
+//   node scripts/optimize-images.mjs east-storefront lakeway-storefront
+const ONLY = process.argv.slice(2);
 
 /**
  * Each entry: source file, output base name, widths, optional aspect ratio
@@ -33,6 +36,9 @@ const IMAGES = [
   // Tab images, 4:5 portrait
   { src: 'scotch-bottles.jpg', base: 'scotch-bottles', widths: [720, 1080], ratio: 5 / 4 },
   { src: 'titos-bottles.jpg', base: 'titos-bottles', widths: [720, 1080], ratio: 5 / 4 },
+  // Storefront photos (owner-supplied): store page heroes + homepage store cards
+  { src: 'east-storefront.jpg', base: 'east-storefront', widths: [768, 1280, 1920], ratio: 9 / 16, jpgQ: 78, webpQ: 72 },
+  { src: 'lakeway-storefront.jpg', base: 'lakeway-storefront', widths: [768, 1280, 1920], ratio: 9 / 16, jpgQ: 78, webpQ: 72, position: 'centre' },
   // About portrait, square (circular-cropped in CSS)
   { src: 'about-photo.png', base: 'about-photo', widths: [400, 700], ratio: 1 },
 ];
@@ -101,12 +107,13 @@ async function main() {
   await mkdir(OUT, { recursive: true });
 
   for (const cfg of IMAGES) {
+    if (ONLY.length && !ONLY.includes(cfg.base)) continue;
     console.log(cfg.src);
     await processImage(cfg);
   }
 
   console.log('logo.png');
-  await processLogo();
+  if (!ONLY.length) await processLogo();
 
   const manifest = {
     name: 'Monarch Liquor',
@@ -119,7 +126,7 @@ async function main() {
     background_color: '#ffffff',
     display: 'browser',
   };
-  await writeFile(path.join(ROOT, 'site.webmanifest'), JSON.stringify(manifest, null, 2) + '\n');
+  await writeFile(path.join(ROOT, 'src', 'site.webmanifest'), JSON.stringify(manifest, null, 2) + '\n');
   console.log('site.webmanifest');
 
   console.log('\nDone.');

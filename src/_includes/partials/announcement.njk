@@ -2,10 +2,6 @@
 {%- set hoursLine = hoursLib.weeklySummary(business.hours)[0] | upper %}
   <!-- Announcement Bar (text is derived from confirmed delivery terms) -->
   <div class="announcement-bar">
-{%- if delivery.terms.freeOver.confirmed %}
-    <a href="{{ site.announcement.href }}">FREE DELIVERY OVER ${{ delivery.terms.freeOver.amount }} &middot; DELIVERY {{ hoursLine }} &middot; TWO AUSTIN STORES</a>
-{%- else %}
     <a href="{{ site.announcement.href }}">ORDER ONLINE &middot; DELIVERY &amp; CURBSIDE {{ hoursLine }} &middot; TWO AUSTIN STORES</a>
-{%- endif %}
   </div>
 {%- endif %}

@@ -18,11 +18,7 @@ schema:
     <!-- Page Hero -->
     <section class="page-hero page-hero--toast">
       <h1><em>Delivery &amp; Curbside</em></h1>
-{%- if t.freeOver.confirmed %}
-      <p>FREE DELIVERY OVER ${{ t.freeOver.amount }} &middot; {{ hoursLine | upper }}</p>
-{%- else %}
       <p>ORDER ONLINE &middot; {{ hoursLine | upper }} &middot; TWO AUSTIN STORES</p>
-{%- endif %}
       <p class="page-hero__actions">{% order "delivery-hero", "Start Your Order", "btn btn--primary" %}</p>
     </section>
 
@@ -50,7 +46,7 @@ schema:
         <div class="step-card reveal">
           <span class="step-number">3</span>
           <h3>Delivered to Your Door</h3>
-          <p>A Monarch driver brings it straight to you{% if t.sameDay.confirmed %} &mdash; usually the same day{% endif %}. Have your ID ready: every recipient must be 21+.</p>
+          <p>A Monarch driver brings it straight to you during store hours. Have your ID ready: every recipient must be 21+.</p>
         </div>
       </div>
       <p style="text-align:center; margin-top:40px;">
@@ -65,15 +61,15 @@ schema:
         <dl class="terms-list">
           <div class="terms-list__row">
             <dt>Hours</dt>
-            <dd>{{ hoursLib.weeklySummary(business.hours) | join(" · ") }}. {{ business.hours.sundayNote }}. {{ business.hours.holidayNote }}</dd>
+            <dd>{{ t.hours.text }}</dd>
           </div>
           <div class="terms-list__row">
             <dt>Delivery fee</dt>
-            <dd>{% if t.freeOver.confirmed %}{{ t.freeOver.text }} {{ t.smallOrderFee.text if t.smallOrderFee.confirmed else t.smallOrderFee.fallback }}{% else %}{{ t.freeOver.fallback }}{% endif %}</dd>
+            <dd>{{ t.fee.text if t.fee.confirmed else t.fee.fallback }}</dd>
           </div>
           <div class="terms-list__row">
             <dt>Timing</dt>
-            <dd>{{ t.sameDay.text if t.sameDay.confirmed else t.sameDay.fallback }}</dd>
+            <dd>{{ t.timing.text if t.timing.confirmed else t.timing.fallback }}</dd>
           </div>
           <div class="terms-list__row">
             <dt>Where</dt>
@@ -87,6 +83,10 @@ schema:
           <div class="terms-list__row">
             <dt>ID</dt>
             <dd>{{ t.idPolicy.text }}</dd>
+          </div>
+          <div class="terms-list__row">
+            <dt>Orders over ${{ t.largeOrders.threshold }}</dt>
+            <dd>{{ t.largeOrders.text }}</dd>
           </div>
           <div class="terms-list__row">
             <dt>Gifts</dt>
@@ -157,6 +157,7 @@ schema:
           <li>A <strong>valid government-issued photo ID</strong> is required &mdash; no exceptions.</li>
           <li>We cannot leave alcohol unattended, with a minor, or with anyone who appears intoxicated.</li>
           <li>If no eligible recipient is available, the order returns to the store and our team will contact you to reschedule.</li>
+          <li>{{ t.largeOrders.text }}</li>
         </ul>
       </div>
     </section>

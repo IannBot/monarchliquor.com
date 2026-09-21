@@ -8,13 +8,15 @@
 
 export default {
   "east-storefront": {
-    neededShot: "East Austin storefront exterior showing the giant Monarch sign at E. MLK Jr. Blvd and Chicon St.",
+    neededShot: "East Austin storefront exterior (supplied 2026-09-21).",
     usedOn: ["/east-austin.html hero", "homepage store card"],
-    ratio: "16:9, at least 1920px wide",
-    src: "/images/scotch-bottles-1080.jpg", webp: "/images/scotch-bottles-1080.webp",
-    width: 1080, height: 1350,
-    alt: "Monarch Liquor East Austin storefront",
-    placeholder: true,
+    ratio: "16:9",
+    base: "/images/east-storefront", // -768/-1280/-1920 .jpg and .webp
+    focus: "center 22%", // keep the rooftop sign in frame
+    src: "/images/east-storefront-1920.jpg", webp: "/images/east-storefront-1920.webp",
+    width: 1920, height: 1080,
+    alt: "Monarch Liquor East Austin storefront with the Monarch sign at E. MLK Jr. Blvd",
+    placeholder: false,
   },
   "east-interior": {
     neededShot: "East Austin interior: shelves of local spirits and specialty drinks.",
@@ -26,13 +28,15 @@ export default {
     placeholder: true,
   },
   "lakeway-storefront": {
-    neededShot: "Lakeway storefront exterior on RR 620 N, next to Don Mario Mexican Restaurant.",
+    neededShot: "Lakeway storefront exterior (supplied 2026-09-21).",
     usedOn: ["/lakeway.html hero", "homepage store card"],
-    ratio: "16:9, at least 1920px wide",
-    src: "/images/titos-bottles-1080.jpg", webp: "/images/titos-bottles-1080.webp",
-    width: 1080, height: 1350,
-    alt: "Monarch Liquor Lakeway storefront",
-    placeholder: true,
+    ratio: "16:9",
+    base: "/images/lakeway-storefront",
+    focus: "center 45%",
+    src: "/images/lakeway-storefront-1920.jpg", webp: "/images/lakeway-storefront-1920.webp",
+    width: 1920, height: 1080,
+    alt: "Monarch Liquor Lakeway storefront on Ranch Road 620 N",
+    placeholder: false,
   },
   "lakeway-beer-cave": {
     neededShot: "Lakeway walk-in beer cave and the 17-door cooler wall.",

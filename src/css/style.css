@@ -3443,3 +3443,65 @@ body {
         font-size: var(--fs-nav);
     }
 }
+
+/* ========================================
+   Storefront photos: responsive store hero + store card photo
+   ======================================== */
+.page-hero--responsive {
+    background-position: var(--hero-pos, center);
+    background-image: var(--hero-image);
+    background-image: image-set(var(--hero-image-webp) type("image/webp"), var(--hero-image) type("image/jpeg"));
+    min-height: 440px;
+}
+
+.page-hero--responsive::before {
+    background: linear-gradient(to bottom, rgba(33, 47, 86, 0.45), rgba(33, 47, 86, 0.25) 45%, rgba(33, 47, 86, 0.7));
+}
+
+@media (max-width: 1280px) {
+    .page-hero--responsive {
+        background-image: var(--hero-1280);
+        background-image: image-set(var(--hero-1280-webp) type("image/webp"), var(--hero-1280) type("image/jpeg"));
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero--responsive {
+        background-image: var(--hero-768);
+        background-image: image-set(var(--hero-768-webp) type("image/webp"), var(--hero-768) type("image/jpeg"));
+        min-height: 320px;
+    }
+}
+
+.store-card--photo {
+    padding-top: 0;
+    overflow: hidden;
+}
+
+.store-card__photo {
+    display: block;
+    margin: 0 -32px 18px;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--navy);
+}
+
+.store-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+@media (hover: hover) {
+    .store-card--photo:hover .store-card__photo img {
+        transform: scale(1.03);
+    }
+}
+
+@media (max-width: 768px) {
+    .store-card__photo {
+        margin: 0 -20px 16px;
+    }
+}

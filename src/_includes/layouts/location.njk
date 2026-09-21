@@ -13,7 +13,11 @@ layout: layouts/base.njk
     </nav>
 
     <!-- Store hero -->
+    {%- if hero.base %}
+    <section class="page-hero page-hero--store page-hero--responsive" style="--hero-768: url('{{ hero.base }}-768.jpg'); --hero-768-webp: url('{{ hero.base }}-768.webp'); --hero-1280: url('{{ hero.base }}-1280.jpg'); --hero-1280-webp: url('{{ hero.base }}-1280.webp'); --hero-image: url('{{ hero.base }}-1920.jpg'); --hero-image-webp: url('{{ hero.base }}-1920.webp'); --hero-pos: {{ hero.focus or 'center' }}">
+{%- else %}
     <section class="page-hero page-hero--store" style="--hero-image: url('{{ hero.src }}'); --hero-image-webp: url('{{ hero.webp }}')"{% if hero.placeholder %} data-placeholder="{{ store.photos.hero }}"{% endif %}>
+{%- endif %}
       <p class="page-hero__kicker">Monarch Liquor &middot; {{ store.neighborhood }}</p>
       <h1><em>{{ h1 }}</em></h1>
       <p>{{ store.address.street }}, {{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}</p>

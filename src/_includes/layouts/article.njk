@@ -30,7 +30,7 @@ sitemap: { priority: "0.7", changefreq: monthly }
     <!-- CTA -->
     <section class="cta-band">
       <h2><em>{{ ctaHeading or "Found Your Next Bottle?" }}</em></h2>
-      <p>{{ ctaText or "Everything in our guides is on the shelf at both stores, or a special order away. Order online for delivery or curbside pickup." }}{% if delivery.terms.freeOver.confirmed %} {{ delivery.terms.freeOver.text }}{% endif %}</p>
+      <p>{{ ctaText or "Everything in our guides is on the shelf at both stores, or a special order away. Order online for delivery or curbside pickup." }}</p>
       {% order "guide-cta", "ORDER DELIVERY", "btn-primary" %}
       <a href="/delivery.html" class="btn-outline-light">DELIVERY INFO</a>
     </section>

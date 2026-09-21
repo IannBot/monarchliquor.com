@@ -12,13 +12,13 @@ export default {
     },
     {
       q: "How much does delivery cost?",
-      a: "Delivery is free on orders over $50. For smaller orders, a delivery fee is calculated and shown at checkout before you pay.",
-      term: "freeOver",
+      a: "The delivery fee is shown at checkout. It's typically $5, and we often run promotions for $0 delivery.",
+      term: "fee",
     },
     {
       q: "How fast will my order arrive?",
-      a: "Most orders placed during store hours arrive the same day, often within a couple of hours. During busy times like weekends and holidays, delivery windows may run a little longer.",
-      term: "sameDay",
+      a: "You can place an order any time. Deliveries go out during store hours, from 30 minutes after opening until 30 minutes before closing, Monday through Saturday.",
+      term: "timing",
     },
     {
       q: "Do you deliver on Sundays?",
@@ -30,13 +30,17 @@ export default {
     },
     {
       q: "Can I return or exchange a product?",
-      a: "Unopened products in their original condition can usually be exchanged in store. Call the store you ordered from (East Austin (512) 614-4949, Lakeway (512) 300-0065) and we'll make it right.",
+      a: "No. Under TABC law, alcohol can't be returned once sold, so please check your order at handoff. If something is wrong with an order, call the store you ordered from.",
       term: "returns",
     },
     {
       q: "Can you special order something you don't carry?",
-      a: "Absolutely. If a product is available from our distributors, we can usually have it in store within a few days. Call or email either location with what you're looking for.",
+      a: "Yes. We often bring in new or exclusive products for our customers. Give us a call and we'll see what we can work out.",
       term: "specialOrders",
+    },
+    {
+      q: "Do large orders need anything extra?",
+      a: "Yes. Orders over $300 require the physical payment card to be present at the time of delivery, along with the recipient's photo ID.",
     },
     {
       q: "Can I send an order as a gift?",
