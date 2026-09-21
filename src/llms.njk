@@ -3,69 +3,67 @@ permalink: /llms.txt
 eleventyExcludeFromCollections: true
 layout: false
 ---
-{% autoescape false -%}
 # Monarch Liquor
 
-> Family-owned liquor stores in Austin, Texas, with two locations (East Austin and Lakeway) selling spirits, wine, and beer in store, for delivery, and for curbside pickup. Established {{ business.foundingYear }}. TABC-licensed retailer; customers must be 21 or older.
+> Family-owned liquor stores in Austin, Texas, with two locations (East Austin and Lakeway) selling spirits, wine, and beer in store, for delivery, and for curbside pickup. Established {{ business.foundingYear | safe }}. TABC-licensed retailer; customers must be 21 or older.
 
 ## Key facts
 
-- Hours (both stores): {{ hoursLib.weeklySummary(business.hours) | join("; ") }}. {{ business.hours.sundayNote }}.
+- Hours (both stores): {{ hoursLib.weeklySummary(business.hours) | join("; ") | safe }}. {{ business.hours.sundayNote | safe }}.
 - Time zone: America/Chicago (Central Time).
-- Online ordering (delivery and curbside): {{ site.bottlecapps.home }}
-- Website: {{ site.url }}/
-- Facebook: {{ business.social.facebook }}
-- Instagram: {{ business.social.instagram }}
+- Online ordering (delivery and curbside): {{ site.bottlecapps.home | safe }}
+- Website: {{ site.url | safe }}/
+- Facebook: {{ business.social.facebook | safe }}
+- Instagram: {{ business.social.instagram | safe }}
 {%- for h in business.hours.holidays %}
-- Holiday hours: {{ h.label }} ({{ h.date }}): {% if h.closed %}Closed{% else %}{{ h.open }}–{{ h.close }}{% endif %}
+- Holiday hours: {{ h.label | safe }} ({{ h.date | safe }}): {% if h.closed %}Closed{% else %}{{ h.open | safe }}–{{ h.close | safe }}{% endif %}
 {%- endfor %}
 
 ## Locations
 {% for store in business.stores %}
-### {{ store.name }}
+### {{ store.name | safe }}
 
-- Address: {{ store.address.street }}, {{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}, {{ store.address.country }}
-- Phone: {{ store.phone.display }}
-- Email: {{ store.email }}
-- Coordinates: {{ store.geo.lat }}, {{ store.geo.lng }}
-- Hours: {{ hoursLib.weeklySummary(business.hours) | join("; ") }}
-- Landmarks: {{ store.landmarks }}
-- Highlights: {{ store.highlights | join(", ") }}
-- Areas served: {{ store.areaServed | join(", ") }}
-- Page: {{ site.url }}{{ store.url }}
-- Directions: {{ store.directionsUrl }}
+- Address: {{ store.address.street | safe }}, {{ store.address.locality | safe }}, {{ store.address.region | safe }} {{ store.address.postalCode | safe }}, {{ store.address.country | safe }}
+- Phone: {{ store.phone.display | safe }}
+- Email: {{ store.email | safe }}
+- Coordinates: {{ store.geo.lat | safe }}, {{ store.geo.lng | safe }}
+- Hours: {{ hoursLib.weeklySummary(business.hours) | join("; ") | safe }}
+- Landmarks: {{ store.landmarks | safe }}
+- Highlights: {{ store.highlights | join(", ") | safe }}
+- Areas served: {{ store.areaServed | join(", ") | safe }}
+- Page: {{ site.url | safe }}{{ store.url | safe }}
+- Directions: {{ store.directionsUrl | safe }}
 {% endfor %}
 ## Delivery and curbside
 
 - Delivery and curbside pickup are available from both stores during store hours, Monday through Saturday.
 {%- for zone in delivery.zones %}
 {%- set zs = business.stores | storeById(zone.storeId) %}
-- {{ zs.shortName }} store delivery area: {% if zone.confirmed %}{{ zone.sentence }}{% else %}{{ delivery.zoneFallback }}{% endif %}
+- {{ zs.shortName | safe }} store delivery area: {% if zone.confirmed %}{{ zone.sentence | safe }}{% else %}{{ delivery.zoneFallback | safe }}{% endif %}
 {%- endfor %}
-- Delivery fee: {% if delivery.terms.freeOver.confirmed %}{{ delivery.terms.freeOver.text }} {{ delivery.terms.smallOrderFee.text if delivery.terms.smallOrderFee.confirmed else delivery.terms.smallOrderFee.fallback }}{% else %}{{ delivery.terms.freeOver.fallback }}{% endif %}
-- Timing: {{ delivery.terms.sameDay.text if delivery.terms.sameDay.confirmed else delivery.terms.sameDay.fallback }}
-- ID policy: {{ delivery.terms.idPolicy.text }}
+- Delivery fee: {% if delivery.terms.freeOver.confirmed %}{{ delivery.terms.freeOver.text | safe }} {{ delivery.terms.smallOrderFee.text if delivery.terms.smallOrderFee.confirmed else delivery.terms.smallOrderFee.fallback | safe }}{% else %}{{ delivery.terms.freeOver.fallback | safe }}{% endif %}
+- Timing: {{ delivery.terms.sameDay.text if delivery.terms.sameDay.confirmed else delivery.terms.sameDay.fallback | safe }}
+- ID policy: {{ delivery.terms.idPolicy.text | safe }}
 - No delivery on Sundays (Texas law requires package stores to close on Sunday).
-- Details: {{ site.url }}/delivery.html
+- Details: {{ site.url | safe }}/delivery.html
 
 ## Pages
 
-- [Home]({{ site.url }}/): overview, both store cards with live hours
-- [East Austin store]({{ site.url }}/east-austin.html): address, hours, map, FAQ
-- [Lakeway store]({{ site.url }}/lakeway.html): address, hours, map, FAQ
-- [Delivery & curbside]({{ site.url }}/delivery.html): how it works, zones, terms, FAQ
-- [FAQ]({{ site.url }}/faq.html): hours, locations, delivery questions
-- [About]({{ site.url }}/about.html): family story, founded {{ business.foundingYear }}
-- [Bars & restaurants]({{ site.url }}/bars-restaurants.html): wholesale and trade accounts
-- [Drink guides]({{ site.url }}/guides/): staff picks, Texas spirits, cocktail recipes
-- [Contact]({{ site.url }}/contact.html)
+- [Home]({{ site.url | safe }}/): overview, both store cards with live hours
+- [East Austin store]({{ site.url | safe }}/east-austin.html): address, hours, map, FAQ
+- [Lakeway store]({{ site.url | safe }}/lakeway.html): address, hours, map, FAQ
+- [Delivery & curbside]({{ site.url | safe }}/delivery.html): how it works, zones, terms, FAQ
+- [FAQ]({{ site.url | safe }}/faq.html): hours, locations, delivery questions
+- [About]({{ site.url | safe }}/about.html): family story, founded {{ business.foundingYear | safe }}
+- [Bars & restaurants]({{ site.url | safe }}/bars-restaurants.html): wholesale and trade accounts
+- [Drink guides]({{ site.url | safe }}/guides/): staff picks, Texas spirits, cocktail recipes
+- [Contact]({{ site.url | safe }}/contact.html)
 
 ## Frequently asked
 {% for f in faqs.hours %}
-- Q: {{ f.q }} A: {{ f | faqAnswer(delivery) }}
+- Q: {{ f.q | safe }} A: {{ f | faqAnswer(delivery) | safe }}
 {%- endfor %}
 {%- for f in faqs.delivery %}
-- Q: {{ f.q }} A: {{ f | faqAnswer(delivery) }}
+- Q: {{ f.q | safe }} A: {{ f | faqAnswer(delivery) | safe }}
 {%- endfor %}
 
-{%- endautoescape %}
