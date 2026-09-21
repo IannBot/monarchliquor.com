@@ -31,7 +31,7 @@ export default {
   careersEmail: "monarch.liquor.atx@gmail.com",
 
   social: {
-    facebook: "https://www.facebook.com/monarchliquoratx",
+    facebook: "https://www.facebook.com/MonarchLiquor",
     instagram: "https://www.instagram.com/monarchliquor/",
   },
 
