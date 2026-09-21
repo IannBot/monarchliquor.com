@@ -8,8 +8,9 @@
     "build": "eleventy",
     "images": "node scripts/optimize-images.mjs",
     "check:links": "node scripts/check-links.mjs",
+    "check:seo": "node scripts/check-seo.mjs",
     "test": "node --test lib/**/*.test.js",
-    "check": "npm run build && npm run check:links && npm test"
+    "check": "npm run build && npm run check:links && npm run check:seo && npm test"
   },
   "engines": {
     "node": ">=20"

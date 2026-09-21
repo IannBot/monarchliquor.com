@@ -17,6 +17,9 @@ schema:
     - { name: Home, url: / }
     - { name: Guides, url: /guides/ }
     - { name: "Best Bourbon & Whiskey in Austin", url: /guides/best-bourbon-whiskey-austin.html }
+tags: [guides]
+cardTitle: "Best Bourbon & Whiskey in Austin"
+card: { src: /images/scotch-bottles-720.jpg, webp: /images/scotch-bottles-720.webp, width: 720, height: 900, alt: "Whiskey pour beside a bottle of scotch" }
 ---
 
     <!-- Breadcrumb -->
@@ -61,8 +64,8 @@ schema:
         </ul>
 
         <div class="shop-callout">
-          <p><strong>Shop this guide:</strong> browse our full whiskey selection online and get it delivered &mdash; free over $50.</p>
-          <a href="https://monarchliquor.bottlecapps.com/" target="_blank" rel="noopener" class="btn-primary">SHOP WHISKEY</a>
+          <p><strong>Shop this guide:</strong> browse our full whiskey selection online and get it delivered.</p>
+          {% order "guide-callout", "SHOP WHISKEY", "btn-primary" %}
         </div>
 
         <h2>Texas Whiskey Worth Seeking Out</h2>
@@ -89,7 +92,7 @@ schema:
     <!-- CTA -->
     <section class="cta-band">
       <h2><em>Get It Delivered</em></h2>
-      <p>Every bottle in this guide can be at your door today. Free delivery on orders over $50.</p>
+      <p>Every bottle in this guide can be at your door.{% if delivery.terms.freeOver.confirmed %} {{ delivery.terms.freeOver.text }}{% endif %}</p>
       <a href="/delivery.html" class="btn-primary">DELIVERY INFO</a>
       <a href="/contact.html" class="btn-outline-light">ASK US ANYTHING</a>
     </section>

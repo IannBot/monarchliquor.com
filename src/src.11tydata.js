@@ -36,6 +36,7 @@ export default {
           image: data.image,
           datePublished: data.datePublished,
           dateModified: data.dateModified,
+          recipes: data.recipes,
         },
         schema: data.schema,
       }),

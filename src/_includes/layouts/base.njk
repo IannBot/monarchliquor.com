@@ -79,6 +79,8 @@
 
   <script type="application/json" id="business-hours">{{ { hours: business.hours, timezone: business.timezone } | dump | safe }}</script>
 
+  {% include "partials/about-blurb.njk" %}
+
   {% include "partials/footer.njk" %}
 
   {% include "partials/sticky-cta.njk" %}

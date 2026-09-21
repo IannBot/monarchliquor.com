@@ -38,6 +38,7 @@ export default {
       { label: "ABOUT", href: "/about.html" },
       { label: "GUIDES", href: "/guides/" },
       { label: "BARS &amp; RESTAURANTS", href: "/bars-restaurants.html" },
+      { label: "FAQ", href: "/faq.html" },
       { label: "CONTACT", href: "/contact.html" },
       { label: "CAREERS", href: "/careers.html" },
     ],
@@ -54,7 +55,7 @@ export default {
       { label: "Lakeway Store", href: "/lakeway.html" },
       { label: "Bars &amp; Restaurants", href: "/bars-restaurants.html" },
       { label: "Privacy Policy", href: "/privacy-policy.html" },
-      { label: "FAQ", href: "/delivery.html#faq" },
+      { label: "FAQ", href: "/faq.html" },
     ],
   },
 };

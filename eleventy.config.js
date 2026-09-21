@@ -56,6 +56,11 @@ export default function (eleventyConfig) {
   // Absolute URL helper for sitemap/OG.
   eleventyConfig.addFilter("abs", (path, site) => site.url.replace(/\/$/, "") + path);
 
+  // Guides, newest first.
+  eleventyConfig.addCollection("guides", (api) =>
+    api.getFilteredByTag("guides").sort((a, b) => new Date(b.data.datePublished) - new Date(a.data.datePublished) || a.inputPath.localeCompare(b.inputPath))
+  );
+
   // Sitemap entries: HTML pages ordered by priority (desc), then by source order.
   eleventyConfig.addCollection("sitemap", (api) =>
     api.getAll()

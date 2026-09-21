@@ -13,10 +13,40 @@ datePublished: "2026-09-03"
 dateModified: "2026-09-03"
 schema:
   article: true
+  recipes: true
   breadcrumbs:
     - { name: Home, url: / }
     - { name: Guides, url: /guides/ }
     - { name: "Classic Cocktails at Home", url: /guides/classic-cocktails-at-home.html }
+tags: [guides]
+cardTitle: "Classic Cocktails at Home"
+card: { src: /images/champagne-toast-768.jpg, webp: /images/champagne-toast-768.webp, width: 768, height: 432, alt: "Friends raising glasses for a toast" }
+recipes:
+  - name: "Margarita"
+    description: "The Austin house cocktail: blanco tequila, fresh lime, orange liqueur, shaken and served over ice with a salt rim."
+    keywords: "margarita, tequila cocktail"
+    ingredients: ["2 oz blanco tequila", "1 oz fresh lime juice", "3/4 oz orange liqueur (Cointreau or Naranja)", "1/4 oz agave syrup (optional, to taste)", "Salt for the rim, lime wheel to garnish"]
+    steps: ["Salt the rim of a rocks glass and fill it with fresh ice.", "Shake tequila, lime juice, orange liqueur, and agave with ice.", "Strain over the fresh ice and garnish with a lime wheel."]
+  - name: "Ranch Water"
+    description: "West Texas's minimalist highball: blanco tequila (or Desert Door sotol), fresh lime, and Topo Chico."
+    keywords: "ranch water, tequila highball, Topo Chico"
+    ingredients: ["2 oz blanco tequila (or Desert Door sotol)", "1/2 oz fresh lime juice", "Topo Chico mineral water, to top"]
+    steps: ["Fill a tall glass with ice.", "Add tequila and lime juice.", "Top with Topo Chico and stir once."]
+  - name: "Old Fashioned"
+    description: "The classic whiskey cocktail: bourbon or rye, a touch of sugar, Angostura bitters, and an orange peel."
+    keywords: "old fashioned, bourbon cocktail, whiskey cocktail"
+    ingredients: ["2 oz bourbon or rye", "1/4 oz simple syrup (or 1 sugar cube)", "2–3 dashes Angostura bitters", "Orange peel to garnish"]
+    steps: ["Combine whiskey, syrup, and bitters in a mixing glass with ice.", "Stir for 20–30 seconds.", "Strain over one large cube in a rocks glass.", "Express the orange peel over the drink and drop it in."]
+  - name: "Paloma"
+    description: "Mexico's favorite tequila drink: tequila, lime, and grapefruit soda over ice with a pinch of salt."
+    keywords: "paloma, tequila grapefruit cocktail"
+    ingredients: ["2 oz blanco or reposado tequila", "1/2 oz fresh lime juice", "Grapefruit soda (Jarritos or Squirt), to top", "Pinch of salt, grapefruit wedge to garnish"]
+    steps: ["Fill a tall glass with ice and add tequila, lime juice, and a pinch of salt.", "Top with grapefruit soda and stir gently.", "Garnish with a grapefruit wedge."]
+  - name: "Espresso Martini"
+    description: "The dinner-party closer: vodka, coffee liqueur, and fresh espresso shaken hard for a thick foam."
+    keywords: "espresso martini, vodka coffee cocktail"
+    ingredients: ["1.5 oz vodka", "1 oz coffee liqueur (Kahlúa or Mr Black)", "1 oz fresh espresso (or strong cold brew), cooled", "1/4 oz simple syrup, to taste", "3 coffee beans to garnish"]
+    steps: ["Add vodka, coffee liqueur, espresso, and syrup to a shaker with ice.", "Shake hard for 15 seconds.", "Strain into a chilled coupe and garnish with three coffee beans."]
 ---
 
     <!-- Breadcrumb -->
@@ -66,8 +96,8 @@ schema:
         <p><em>Stir with ice for 20&ndash;30 seconds, strain over one big cube, express the orange peel over the top.</em> Need a bottle? Our <a href="/guides/best-bourbon-whiskey-austin.html">bourbon guide</a> has picks at every price.</p>
 
         <div class="shop-callout">
-          <p><strong>Shop this guide:</strong> add the spirits, bitters, and mixers to one delivery order &mdash; free over $50.</p>
-          <a href="https://monarchliquor.bottlecapps.com/" target="_blank" rel="noopener" class="btn-primary">SHOP COCKTAIL SUPPLIES</a>
+          <p><strong>Shop this guide:</strong> add the spirits, bitters, and mixers to one delivery order.</p>
+          {% order "guide-callout", "SHOP COCKTAIL SUPPLIES", "btn-primary" %}
         </div>
 
         <h2>4. Paloma</h2>
@@ -99,7 +129,7 @@ schema:
     <!-- CTA -->
     <section class="cta-band">
       <h2><em>Cocktail Night, Delivered</em></h2>
-      <p>Everything above in one order, at your door before your guests arrive. Free delivery over $50.</p>
+      <p>Everything above in one order, at your door before your guests arrive.</p>
       <a href="/delivery.html" class="btn-primary">DELIVERY INFO</a>
       <a href="/contact.html" class="btn-outline-light">ASK US ANYTHING</a>
     </section>

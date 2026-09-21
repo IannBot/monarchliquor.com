@@ -1,0 +1,15 @@
+{#- One guide as a card. Set `guide` (a collection item) before including. -#}
+{%- set c = guide.data.card %}
+        <div class="category-card reveal">
+          <div class="card-media">
+            <a href="{{ guide.url }}" tabindex="-1" aria-hidden="true">
+              <picture>
+                <source type="image/webp" srcset="{{ c.webp }}">
+                <img src="{{ c.src }}" width="{{ c.width }}" height="{{ c.height }}" alt="{{ c.alt }}" loading="lazy" decoding="async">
+              </picture>
+            </a>
+          </div>
+          <h3><a href="{{ guide.url }}">{{ guide.data.cardTitle or guide.data.headline }}</a></h3>
+          <p class="card-blurb">{{ guide.data.summary }}</p>
+          <a href="{{ guide.url }}" class="btn-outline">READ THE GUIDE</a>
+        </div>

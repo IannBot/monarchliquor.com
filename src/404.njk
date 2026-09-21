@@ -1,0 +1,26 @@
+---
+title: "Page Not Found | Monarch Liquor"
+description: "That page isn't here, but our two Austin stores are. Find hours, directions, and online ordering for Monarch Liquor East Austin and Lakeway."
+permalink: /404.html
+noindex: true
+eleventyExcludeFromCollections: true
+---
+
+    <section class="page-hero page-hero--plain">
+      <h1><em>That bottle's not on this shelf.</em></h1>
+      <p>404 &middot; PAGE NOT FOUND</p>
+    </section>
+
+    <section class="content-section">
+      <div class="content-narrow" style="text-align:center;">
+        <p>The link you followed may be old. Here's where to go next.</p>
+        <div class="store-card__actions" style="justify-content:center; margin:24px 0 40px;">
+          {% order "404", "Order Delivery" %}
+          <a href="/" class="btn btn--secondary">Home</a>
+          <a href="/delivery.html" class="btn btn--ghost">Delivery info</a>
+        </div>
+      </div>
+      <div class="container">
+        {% include "partials/store-grid.njk" %}
+      </div>
+    </section>

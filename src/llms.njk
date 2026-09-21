@@ -1,0 +1,71 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+layout: false
+---
+{% autoescape false -%}
+# Monarch Liquor
+
+> Family-owned liquor stores in Austin, Texas, with two locations (East Austin and Lakeway) selling spirits, wine, and beer in store, for delivery, and for curbside pickup. Established {{ business.foundingYear }}. TABC-licensed retailer; customers must be 21 or older.
+
+## Key facts
+
+- Hours (both stores): {{ hoursLib.weeklySummary(business.hours) | join("; ") }}. {{ business.hours.sundayNote }}.
+- Time zone: America/Chicago (Central Time).
+- Online ordering (delivery and curbside): {{ site.bottlecapps.home }}
+- Website: {{ site.url }}/
+- Facebook: {{ business.social.facebook }}
+- Instagram: {{ business.social.instagram }}
+{%- for h in business.hours.holidays %}
+- Holiday hours: {{ h.label }} ({{ h.date }}): {% if h.closed %}Closed{% else %}{{ h.open }}–{{ h.close }}{% endif %}
+{%- endfor %}
+
+## Locations
+{% for store in business.stores %}
+### {{ store.name }}
+
+- Address: {{ store.address.street }}, {{ store.address.locality }}, {{ store.address.region }} {{ store.address.postalCode }}, {{ store.address.country }}
+- Phone: {{ store.phone.display }}
+- Email: {{ store.email }}
+- Coordinates: {{ store.geo.lat }}, {{ store.geo.lng }}
+- Hours: {{ hoursLib.weeklySummary(business.hours) | join("; ") }}
+- Landmarks: {{ store.landmarks }}
+- Highlights: {{ store.highlights | join(", ") }}
+- Areas served: {{ store.areaServed | join(", ") }}
+- Page: {{ site.url }}{{ store.url }}
+- Directions: {{ store.directionsUrl }}
+{% endfor %}
+## Delivery and curbside
+
+- Delivery and curbside pickup are available from both stores during store hours, Monday through Saturday.
+{%- for zone in delivery.zones %}
+{%- set zs = business.stores | storeById(zone.storeId) %}
+- {{ zs.shortName }} store delivery area: {% if zone.confirmed %}{{ zone.sentence }}{% else %}{{ delivery.zoneFallback }}{% endif %}
+{%- endfor %}
+- Delivery fee: {% if delivery.terms.freeOver.confirmed %}{{ delivery.terms.freeOver.text }} {{ delivery.terms.smallOrderFee.text if delivery.terms.smallOrderFee.confirmed else delivery.terms.smallOrderFee.fallback }}{% else %}{{ delivery.terms.freeOver.fallback }}{% endif %}
+- Timing: {{ delivery.terms.sameDay.text if delivery.terms.sameDay.confirmed else delivery.terms.sameDay.fallback }}
+- ID policy: {{ delivery.terms.idPolicy.text }}
+- No delivery on Sundays (Texas law requires package stores to close on Sunday).
+- Details: {{ site.url }}/delivery.html
+
+## Pages
+
+- [Home]({{ site.url }}/): overview, both store cards with live hours
+- [East Austin store]({{ site.url }}/east-austin.html): address, hours, map, FAQ
+- [Lakeway store]({{ site.url }}/lakeway.html): address, hours, map, FAQ
+- [Delivery & curbside]({{ site.url }}/delivery.html): how it works, zones, terms, FAQ
+- [FAQ]({{ site.url }}/faq.html): hours, locations, delivery questions
+- [About]({{ site.url }}/about.html): family story, founded {{ business.foundingYear }}
+- [Bars & restaurants]({{ site.url }}/bars-restaurants.html): wholesale and trade accounts
+- [Drink guides]({{ site.url }}/guides/): staff picks, Texas spirits, cocktail recipes
+- [Contact]({{ site.url }}/contact.html)
+
+## Frequently asked
+{% for f in faqs.hours %}
+- Q: {{ f.q }} A: {{ f | faqAnswer(delivery) }}
+{%- endfor %}
+{%- for f in faqs.delivery %}
+- Q: {{ f.q }} A: {{ f | faqAnswer(delivery) }}
+{%- endfor %}
+
+{%- endautoescape %}

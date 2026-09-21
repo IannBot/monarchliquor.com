@@ -8,6 +8,9 @@ sitemap: { priority: "0.9", changefreq: monthly }
 schema:
   faqs: [delivery]
   stores: true
+  breadcrumbs:
+    - { name: Home, url: / }
+    - { name: Delivery, url: /delivery.html }
 ---
 {%- set t = delivery.terms -%}
 {%- set hoursLine = hoursLib.weeklySummary(business.hours)[0] -%}

@@ -3,6 +3,55 @@ permalink: /robots.txt
 eleventyExcludeFromCollections: true
 layout: false
 ---
+# monarchliquor.com
+# Public marketing site. All content may be crawled, including by AI answer
+# engines, so that hours, locations, and delivery facts are cited accurately.
+
 User-agent: *
 Allow: /
+
+# Search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI answer engines and assistants
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
 Sitemap: {{ site.url }}/sitemap.xml

@@ -1,0 +1,6 @@
+  <!-- Consistent business summary on every page (helps search and AI engines cite the same facts) -->
+  <section class="about-blurb" aria-label="About Monarch Liquor">
+    <div class="container">
+      <p><strong>About Monarch Liquor.</strong> Family-owned liquor stores in Austin, Texas, since {{ business.foundingYear }}: <a href="{{ business.stores[0].url }}">East Austin</a> at {{ business.stores[0].address.street }} and <a href="{{ business.stores[1].url }}">Lakeway</a> at {{ business.stores[1].address.street }}. Open {{ hoursLib.weeklySummary(business.hours)[0] }}, closed Sunday. Spirits, wine, and beer in store, <a href="/delivery.html">delivered</a>, or curbside. Call <a href="{{ business.phone.href }}">{{ business.phone.display }}</a>. Must be 21+.</p>
+    </div>
+  </section>

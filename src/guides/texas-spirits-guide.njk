@@ -1,5 +1,5 @@
 ---
-title: "The Texas Spirits Guide: Vodka, Gin, Whiskey & Agave | Monarch Liquor"
+title: "Texas Spirits Guide: Vodka, Gin, Whiskey & Agave | Monarch Liquor"
 description: "A tour of Texas-made spirits from the Monarch Liquor team: Tito's and beyond in vodka, Desert Door sotol, Hill Country gin, and the state's best whiskeys."
 ogDescription: "A tour of Texas-made spirits: Tito's and beyond in vodka, Desert Door sotol, Hill Country gin, and the state's best whiskeys."
 twitterTitle: "The Texas Spirits Guide | Monarch Liquor"
@@ -17,6 +17,9 @@ schema:
     - { name: Home, url: / }
     - { name: Guides, url: /guides/ }
     - { name: "The Texas Spirits Guide", url: /guides/texas-spirits-guide.html }
+tags: [guides]
+cardTitle: "The Texas Spirits Guide"
+card: { src: /images/titos-bottles-720.jpg, webp: /images/titos-bottles-720.webp, width: 720, height: 900, alt: "Texas-made spirits on the shelf at Monarch Liquor" }
 ---
 
     <!-- Breadcrumb -->
@@ -26,7 +29,7 @@ schema:
 
     <!-- Article Header -->
     <header class="article-header">
-      <h1><em>The Texas Spirits Guide</em></h1>
+      <h1><em>The Texas Spirits Guide: Vodka, Gin, Whiskey &amp; Agave</em></h1>
       <p class="article-meta">By the Monarch Liquor team &middot; Updated Sept 2026</p>
     </header>
 
@@ -60,7 +63,7 @@ schema:
 
         <div class="shop-callout">
           <p><strong>Shop this guide:</strong> filter by Texas brands online, or ask any associate for the local shelf tour in store.</p>
-          <a href="https://monarchliquor.bottlecapps.com/" target="_blank" rel="noopener" class="btn-primary">SHOP TEXAS SPIRITS</a>
+          {% order "guide-callout", "SHOP TEXAS SPIRITS", "btn-primary" %}
         </div>
 
         <h2>Agave &amp; Desert Spirits</h2>
@@ -84,7 +87,7 @@ schema:
     <!-- CTA -->
     <section class="cta-band">
       <h2><em>Drink Local, Delivered Locally</em></h2>
-      <p>Texas spirits, hand-delivered by your neighborhood liquor store. Free delivery on orders over $50.</p>
+      <p>Texas spirits, hand-delivered by your neighborhood liquor store.{% if delivery.terms.freeOver.confirmed %} {{ delivery.terms.freeOver.text }}{% endif %}</p>
       <a href="/delivery.html" class="btn-primary">DELIVERY INFO</a>
       <a href="/contact.html" class="btn-outline-light">ASK US ANYTHING</a>
     </section>

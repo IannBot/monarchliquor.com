@@ -10,7 +10,8 @@ export default {
   legalName: "Monarch Liquor",
   foundingYear: 2020,
   timezone: "America/Chicago",
-  priceRange: "$$",
+  priceRange: "$",
+  paymentAccepted: "Cash, Credit Card, Debit Card", // OWNER TODO: confirm
   description:
     "Family-owned liquor store in East Austin and Lakeway. Specialty spirits, curated wines, and eclectic beer. In-store, delivery, and curbside. Est. 2020.",
 

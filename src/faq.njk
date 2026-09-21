@@ -1,0 +1,45 @@
+---
+title: "FAQ: Hours, Locations & Delivery | Monarch Liquor Austin"
+description: "Answers about Monarch Liquor's hours (Mon–Sat 10am–9pm, closed Sunday), East Austin and Lakeway locations, delivery, curbside pickup, ID rules, and special orders."
+sitemap: { priority: "0.7", changefreq: monthly }
+schema:
+  faqs: [hours, east-austin, lakeway, delivery]
+  breadcrumbs:
+    - { name: Home, url: / }
+    - { name: FAQ, url: /faq.html }
+---
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>FAQ
+    </nav>
+
+    <section class="page-hero page-hero--plain">
+      <h1><em>Frequently Asked Questions</em></h1>
+      <p>HOURS &middot; LOCATIONS &middot; DELIVERY</p>
+    </section>
+
+    <section class="content-section faq-page">
+      <div class="content-narrow">
+        <p class="answer">Monarch Liquor has two family-owned stores in Austin, Texas: East Austin at {{ business.stores[0].address.street }} and Lakeway at {{ business.stores[1].address.street }}. Both are open {{ hoursLib.weeklySummary(business.hours)[0] }} and closed on Sunday. Order online for delivery or curbside pickup; every recipient must be 21 or older with a valid photo ID.</p>
+
+        <h2>Hours</h2>
+        {% set faqGroup = "hours" %}{% include "partials/faq-list.njk" %}
+
+        <h2>East Austin store</h2>
+        {% set faqGroup = "east-austin" %}{% include "partials/faq-list.njk" %}
+
+        <h2>Lakeway store</h2>
+        {% set faqGroup = "lakeway" %}{% include "partials/faq-list.njk" %}
+
+        <h2>Delivery &amp; curbside</h2>
+        {% set faqGroup = "delivery" %}{% include "partials/faq-list.njk" %}
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <h2><em>Still have a question?</em></h2>
+      <p>Call {{ business.phone.display }} or email <a href="mailto:{{ business.email }}">{{ business.email }}</a>. We answer during store hours.</p>
+      {% order "faq-cta", "ORDER DELIVERY", "btn-primary" %}
+      <a href="/contact.html" class="btn-outline-light">CONTACT US</a>
+    </section>

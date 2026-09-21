@@ -2540,3 +2540,65 @@ body {
         background: var(--gold-100);
     }
 }
+
+/* ========================================
+   SEO/GEO additions: about blurb, FAQ page, guide cards
+   ======================================== */
+.about-blurb {
+    background: var(--cream);
+    border-top: 1px solid rgba(33, 47, 86, 0.1);
+    padding: 26px 0;
+    font-size: 14px;
+    color: var(--text-medium);
+    line-height: 1.7;
+}
+
+.about-blurb p {
+    margin: 0;
+    max-width: 900px;
+}
+
+.about-blurb strong {
+    color: var(--navy);
+}
+
+.about-blurb a {
+    color: var(--navy);
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 3px;
+}
+
+.faq-page h2 {
+    font-family: var(--heading-font);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--navy);
+    margin: 40px 0 14px;
+}
+
+.faq-page .faq-list {
+    max-width: none;
+    padding: 0;
+}
+
+.card-blurb {
+    font-size: 14px;
+    color: var(--text-medium);
+    line-height: 1.6;
+    padding: 0 20px;
+    margin: -6px 0 16px;
+}
+
+.category-card h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.category-card h3 a:hover {
+    color: var(--gold-dark);
+}
+
+.cta-band p a {
+    color: var(--gold);
+}
