@@ -3505,3 +3505,16 @@ body {
         margin: 0 -20px 16px;
     }
 }
+
+/* Homepage category cards: portrait frame so the product shots show the whole bottle */
+.categories .card-media {
+    aspect-ratio: 4 / 5;
+    height: auto;
+}
+
+.categories .card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}

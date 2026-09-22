@@ -36,6 +36,10 @@ const IMAGES = [
   // Tab images, 4:5 portrait
   { src: 'scotch-bottles.jpg', base: 'scotch-bottles', widths: [720, 1080], ratio: 5 / 4 },
   { src: 'titos-bottles.jpg', base: 'titos-bottles', widths: [720, 1080], ratio: 5 / 4 },
+  // Homepage category cards (owner-supplied product shots), 4:5 portrait
+  { src: 'spirits-card.jpg', base: 'spirits-card', widths: [480, 720], ratio: 5 / 4, position: 'centre' },
+  { src: 'wine-card.jpg', base: 'wine-card', widths: [480, 720], ratio: 5 / 4, position: 'centre' },
+  { src: 'beer-card.jpg', base: 'beer-card', widths: [480, 720], ratio: 5 / 4, position: 'centre' },
   // Storefront photos (owner-supplied): store page heroes + homepage store cards
   { src: 'east-storefront.jpg', base: 'east-storefront', widths: [768, 1280, 1920], ratio: 9 / 16, jpgQ: 78, webpQ: 72 },
   { src: 'lakeway-storefront.jpg', base: 'lakeway-storefront', widths: [768, 1280, 1920], ratio: 9 / 16, jpgQ: 78, webpQ: 72, position: 'centre' },
