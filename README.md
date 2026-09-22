@@ -60,12 +60,7 @@ Copy an existing file in `src/guides/`, set `title`, `description`, `headline`, 
 
 ## Owner setup checklist
 
-1. **DNS (site is down until this is done).** At the registrar for monarchliquor.com, delete the Wix A records and the `www` CNAME to `cdn3.wixdns.net`, then add:
-   - A `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - CNAME `www` → `iannbot.github.io`
-   - The TXT verification record shown under GitHub Settings → Pages → Verified domains
-
-   After propagation, turn on "Enforce HTTPS" in Settings → Pages.
+1. **DNS.** Done 2026-09-22: A records and www point at GitHub Pages, certificate issued, HTTPS enforced. DNS is still hosted on Wix nameservers (email MX records for Google Workspace live there too), so future DNS edits happen in the Wix domain panel.
 2. **Google Analytics 4.** Create a property at analytics.google.com, copy the Measurement ID (`G-…`) into `ga4Id` in `src/_data/site.js`. Events `order_click`, `call_click`, `directions_click`, and `email_click` appear in GA4 automatically; mark `order_click` as a conversion.
 3. **Google Search Console.** Add the domain property, verify by DNS TXT, submit `https://monarchliquor.com/sitemap.xml`, and request indexing for `/east-austin.html`, `/lakeway.html`, `/delivery.html`, and `/faq.html`.
 4. **Google Business Profile.** For each listing: set the website to that store's page (`/east-austin.html`, `/lakeway.html`), confirm hours match (Mon–Sat 10am–9pm, Sunday closed), set the "Order online" link to BottleCapps, add the new photos, and copy each listing's Place ID so the review links can use `https://search.google.com/local/writereview?placeid=…` (paste into `reviewUrl` and `gbpUrl` in `business.js`).
