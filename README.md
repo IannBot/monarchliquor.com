@@ -72,9 +72,8 @@ Copy an existing file in `src/guides/`, set `title`, `description`, `headline`, 
 5. **Delivery terms.** Fee, timing, gifts, returns, special orders, and the $300 card rule are confirmed. Still open in `src/_data/delivery.js`: the delivery zones with ZIP lists.
 6. **Photos.** Supply the shots in `src/_data/photos.js`.
 7. **Emails.** Decide whether both stores use `Retail@monarchliquor.com`; update `email` per store and `careersEmail`.
-8. **BottleCapps category URLs.** Paste spirits/wine/beer category links into `site.js` so category cards and guide callouts deep-link.
-9. **Payment methods and price range** in `business.js` (used in schema).
-10. **Delivery app links.** Paste the Uber Eats, DoorDash, Grubhub, and Instacart store URLs into `marketplaces` in `src/_data/site.js` (badges on the homepage and delivery page become links). Optionally add official logo files under `src/images/marketplaces/` and set each entry's `logo`.
+8. **Payment methods and price range** in `business.js` (used in schema).
+9. **Delivery app links.** Paste the Uber Eats, DoorDash, Grubhub, and Instacart store URLs into `marketplaces` in `src/_data/site.js` (badges on the homepage and delivery page become links). Optionally add official logo files under `src/images/marketplaces/` and set each entry's `logo`.
 
 ## Deploy
 

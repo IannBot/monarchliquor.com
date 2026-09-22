@@ -14,8 +14,8 @@ export default {
     home: "https://monarchliquor.bottlecapps.com/",
     categories: {
       spirits: "https://monarchliquor.bottlecapps.com/s-10917/c-2/buy-liquor",
-      wine: null, // OWNER TODO
-      beer: null, // OWNER TODO
+      wine: "https://monarchliquor.bottlecapps.com/s-10917/c-3/buy-wine",
+      beer: "https://monarchliquor.bottlecapps.com/s-10917/c-1/buy-beer",
     },
   },
 
