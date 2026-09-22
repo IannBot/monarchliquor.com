@@ -10,8 +10,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("hoursLib", hoursLib);
 
   // Every BottleCapps link goes through this shortcode so placement is tracked.
-  eleventyConfig.addShortcode("order", (placement, label = "Order Delivery", cls = "btn btn--primary") =>
-    `<a href="${siteData.bottlecapps.home}" target="_blank" rel="noopener" class="${cls} shop-link" data-cta="${placement}">${label}</a>`);
+  eleventyConfig.addShortcode("order", (placement, label = "Order Delivery", cls = "btn btn--primary", category = null) =>
+    `<a href="${(category && siteData.bottlecapps.categories[category]) || siteData.bottlecapps.home}" target="_blank" rel="noopener" class="${cls} shop-link" data-cta="${placement}">${label}</a>`);
 
   eleventyConfig.addFilter("faqAnswer", (f, d) => faqAnswer(f, d));
 

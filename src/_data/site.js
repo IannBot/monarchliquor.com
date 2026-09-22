@@ -12,7 +12,11 @@ export default {
   // Online ordering (BottleCapps). Category URLs are filled in when the owner supplies them.
   bottlecapps: {
     home: "https://monarchliquor.bottlecapps.com/",
-    categories: { spirits: null, wine: null, beer: null },
+    categories: {
+      spirits: "https://monarchliquor.bottlecapps.com/s-10917/c-2/buy-liquor",
+      wine: null, // OWNER TODO
+      beer: null, // OWNER TODO
+    },
   },
 
   // Third-party delivery apps. OWNER TODO: paste each store listing URL; badges
